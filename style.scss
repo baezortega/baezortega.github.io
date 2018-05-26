@@ -40,12 +40,8 @@ pre {
   width: 100%;
 }
 
-.post-title {
-  font-family: $georgia;
-  font-style: italic;
-}
-
 .post-title h1 {
+  font-family: $georgia;
   font-size: 32px;
   font-weight: bold;
   a {
@@ -54,16 +50,22 @@ pre {
 }
 
 .post-title h2 {
+  font-family: $georgia;
+  font-style: italic;
   line-height: 0.8;
   font-size: 28px;
   margin-bottom: 30px;
 }
 
 .post-title h3 {
+  font-family: $georgia;
+  font-style: italic;
   font-size: 20px;
 }
 
 .post-title h4 {
+  font-family: $georgia;
+  font-style: italic;
   font-size: 19px;
   color: $gray;
   line-height: 1.5;
@@ -236,14 +238,14 @@ img {
   cursor: pointer;
   font-family: $helveticaNeue;
   font-weight: 300;
-  font-size: 28px;
+  font-size: 32px;
   letter-spacing: 1px;
 }
 
 .site-description {
   margin: -5px 0 0 0;
   color: $gray;
-  font-size: 16px;
+  font-size: 18px;
   font-family: $helvetica;
 
   @include mobile {

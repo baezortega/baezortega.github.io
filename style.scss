@@ -40,9 +40,41 @@ pre {
   width: 100%;
 }
 
-h1, h2, h3, h4, h5, h6 {
+.post-title {
   font-family: $georgia;
+  font-style: italic;
+}
+
+.post-title h1 {
+  font-size: 32px;
+  
+  font-weight: bold;
+  a {
+    color: inherit;
+  }
+}
+
+.post-title h2 {
+  line-height: 0.8;
+  font-size: 28px;
+  margin-bottom: 30px;
+}
+
+.post-title h3 {
+  font-size: 20px;
+}
+
+.post-title h4 {
+  font-size: 19px;
+  color: $gray;
+  line-height: 1.5;
+  margin-bottom: 40px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: $helveticaNeue;
   color: $darkerGray;
+  font-weight: bold;
 
   line-height: 1.7;
   margin: 1em 0 15px;
@@ -54,32 +86,23 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 h1 {
-  font-size: 32px;
-  font-style: italic;
-  font-weight: bold;
+  font-size: 30px;
   a {
     color: inherit;
   }
 }
 
 h2 {
-  line-height: 0.8;
-  font-size: 28px;
-  font-style: italic;
-  margin-bottom: 30px;
+  font-size: 24px;
 }
 
 h3 {
   font-size: 20px;
-  font-style: italic;
 }
 
 h4 {
-  font-size: 19px;
+  font-size: 18px;
   color: $gray;
-  font-style: italic;
-  line-height: 1.5;
-  margin-bottom: 40px;
 }
 
 p {
@@ -216,6 +239,7 @@ img {
   font-weight: 300;
   font-size: 28px;
   letter-spacing: 1px;
+  font-
 }
 
 .site-description {
@@ -295,6 +319,12 @@ nav {
   border-top: 1px solid #ddd;
   border-bottom: 1px solid #ddd;
   background-color: $lightGray;
+}
+
+.page {
+  h1, h2 {
+    font-style: none;
+  }
 }
 
 footer {

@@ -12,4 +12,4 @@ My major academic interests are in understanding the influence of forces of muta
 neoplastic genomes; side interests include evolutionary genetics, statistics, physics, astronomy and music.
 
 I also like writing scientific dissemination articles for my (other) blog, 
-[divulgatum](www.divulgatum.com).
+[divulgatum](http://www.divulgatum.com).

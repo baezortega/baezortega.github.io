@@ -43,7 +43,6 @@ pre {
 .post-title h1 {
   font-family: $georgia;
   font-size: 32px;
-  font-weight: bold;
   a {
     color: inherit;
   }
@@ -51,20 +50,23 @@ pre {
 
 .post-title h2 {
   font-family: $georgia;
+  font-weight: normal;
   font-style: italic;
-  line-height: 0.8;
+  line-height: 0.5;
   font-size: 28px;
   margin-bottom: 30px;
 }
 
 .post-title h3 {
   font-family: $georgia;
+  font-weight: normal;
   font-style: italic;
   font-size: 20px;
 }
 
 .post-title h4 {
   font-family: $georgia;
+  font-weight: normal;
   font-style: italic;
   font-size: 19px;
   color: $gray;
@@ -237,13 +239,13 @@ img {
   color: $darkGray;
   cursor: pointer;
   font-family: $helveticaNeue;
-  font-weight: 300;
-  font-size: 32px;
+  font-weight: 200;
+  font-size: 35px;
   letter-spacing: 1px;
 }
 
 .site-description {
-  margin: -5px 0 0 0;
+  margin: -9px 0 0 0;
   color: $gray;
   font-size: 18px;
   font-family: $helvetica;

@@ -4,12 +4,12 @@ title: About
 permalink: /about/
 ---
 
-Some information about you!
+### Adrian Baez-Ortega
 
-### More Information
+I'm a (bio)informatician and a doctoral student at the Transmissible Cancer Group, University of 
+Cambridge. My PhD revolves around the evolution of an 11,000-year-old contagious cancer in dogs. 
+My major academic interests are in understanding the influence of forces of mutation and selection on normal and 
+neoplastic genomes; side interests include evolutionary genetics, statistics, physics, astronomy and music.
 
-A place to include any other types of information that you'd like to include about yourself.
-
-### Contact me
-
-[email@domain.com](mailto:email@domain.com)
+I also like writing scientific dissemination articles for my (other) blog, 
+[divulgatum](www.divulgatum.com).

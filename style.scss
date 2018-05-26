@@ -18,7 +18,7 @@ html {
 }
 
 body {
-	background: $white;
+  background: $white;
   font: 18px/1.4 $helvetica;
   color: $darkGray;
 }
@@ -256,9 +256,8 @@ nav {
     margin: 1.8em .8em;
     border-left: 2px solid $gray;
     padding: 0.1em 1em;
-    color: $gray;
-    font-size: 22px;
-    font-style: italic;
+    font-size: 19px;
+    background-color: #EEEEEE;
   }
 
   .comments {
@@ -267,6 +266,20 @@ nav {
 
   .read-more {
     text-transform: uppercase;
+    font-size: 15px;
+  }
+  
+  body {
+    font-size: 19px;
+    font-family: Georgia;
+  }
+  
+  p {
+    margin-bottom: 20px;
+    margin-top: 20px;
+  }
+  
+  pre {
     font-size: 15px;
   }
 }

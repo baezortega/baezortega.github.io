@@ -25,7 +25,7 @@ Adopting a multivariate *t*-distribution with a vague prior on its degrees of fr
 
 Let's try the model on some artificial correlated data in R. We will need the following packages:
 
-``` r
+```r
 library(rstan)    # to run the Bayesian model (stan)
 library(coda)     # to obtain HPD intervals (HPDinterval)
 library(mvtnorm)  # to generate random correlated data (rmvnorm)
@@ -34,7 +34,7 @@ library(car)      # to plot the inferred distribution (dataEllipse)
 
 We can generate random data from a multivariate normal distribution with pre-specified correlation (`rho`) using the `rmvnorm` function in the `mvtnorm` package. The covariance matrix is constructed as explained in Rasmus Bååth's [post](http://www.sumsar.net/blog/2013/08/bayesian-estimation-of-correlation/).
 
-``` r
+```r
 sigma = c(20, 40)
 rho = -0.95
 cov.mat = matrix(c(sigma[1] ^ 2,
@@ -52,13 +52,13 @@ plot(x.clean, pch=16)
 
 Let's first take a look at the classical correlation coefficients (Pearson's and Spearman's) on these data.
 
-``` r
+```r
 cor(x.clean, method="pearson")[1, 2]
 ```
 
     ## [1] -0.959702
 
-``` r
+```r
 cor(x.clean, method="spearman")[1, 2]
 ```
 
@@ -66,7 +66,7 @@ cor(x.clean, method="spearman")[1, 2]
 
 These data are a bit too clean for my taste, so let's introduce some extreme outliers.
 
-``` r
+```r
 x.noisy = x.clean
 x.noisy[1:3,] = matrix(c(-40, -60,
                          20, 100,
@@ -79,13 +79,13 @@ plot(x.noisy, pch=16)
 
 Now, classical methods are not happy with this kind of non-normal outliers, and both correlation coefficients decrease. While Pearson's correlation is more sensitive, these outliers are extreme enough to have a large impact on Spearman's as well.
 
-``` r
+```r
 cor(x.noisy, method="pearson")[1, 2]
 ```
 
     ## [1] -0.6365649
 
-``` r
+```r
 cor(x.noisy, method="spearman")[1, 2]
 ```
 
@@ -133,7 +133,7 @@ The code for my Stan version of Bååth's multivariate *t* model is reproduced b
 
 Now, let's first run the model on the clean data. The time this takes will depend on the number of iterations and chains we use, but it shouldn't be long. (Note that the model has to be compiled the first time it is run. Some unimportant warning messages might show up during compilation, before MCMC sampling starts.)
 
-``` r
+```r
 # Set up model data
 data.clean = list(x=x.clean, N=nrow(x.clean))
 
@@ -200,19 +200,19 @@ cor.clean = stan(file="robust_correlation.stan",
 
 We can take a look at the MCMC traces and the posterior distributions for `rho` (the correlation coefficient), `mu`, `sigma` (the locations and scales of the bivariate *t*-distribution), and `nu` (the degrees of freedom).
 
-``` r
+```r
 stan_trace(cor.clean, pars=c("rho", "mu", "sigma", "nu"))
 ```
 
 ![]({{ site.baseurl }}/images/robust_correlation_images/unnamed-chunk-8-1.png)
 
-``` r
+```r
 stan_dens(cor.clean, pars=c("rho", "mu", "sigma", "nu"))
 ```
 
 ![]({{ site.baseurl }}/images/robust_correlation_images/unnamed-chunk-8-2.png)
 
-``` r
+```r
 stan_plot(cor.clean, pars=c("rho", "mu", "sigma", "nu"))
 ```
 
@@ -226,7 +226,7 @@ The traces show convergence of the two MCMC chains, and almost all the weight of
 
 We can see how well the inferred bivariate distribution fits the data by plotting the random samples that the model drew from this distribution (`x_rand` in the model).
 
-``` r
+```r
 x.rand = extract(cor.clean, c("x_rand"))[[1]]
 plot(x.clean, xlim=c(-60, 55), ylim=c(-120, 120), pch=16)
 dataEllipse(x.rand, levels = c(0.5, 0.95),
@@ -239,13 +239,13 @@ In the plot above, the dark-blue inner ellipse is the area containing 50% of the
 
 It seems that the distribution inferred by the model does fit the data quite well. Now, this was expected for such eerily clean data. Let's try on the noisy data; remember that the classical correlations were strongly affected by the introduced outliers.
 
-``` r
+```r
 cor(x.noisy, method="pearson")[1, 2]
 ```
 
     ## [1] -0.6365649
 
-``` r
+```r
 cor(x.noisy, method="spearman")[1, 2]
 ```
 
@@ -253,7 +253,7 @@ cor(x.noisy, method="spearman")[1, 2]
 
 We run the model on the noisy data as before.
 
-``` r
+```r
 # Set up model data
 data.noisy = list(x=x.noisy, N=nrow(x.noisy))
 
@@ -318,20 +318,20 @@ cor.noisy = stan(file="robust_correlation.stan",
     ##                48.1511 seconds (Sampling)
     ##                65.864 seconds (Total)
 
-``` r
+```r
 # Plot traces and posteriors
 stan_trace(cor.noisy, pars=c("rho", "mu", "sigma", "nu"))
 ```
 
 ![]({{ site.baseurl }}/images/robust_correlation_images/unnamed-chunk-12-1.png)
 
-``` r
+```r
 stan_dens(cor.noisy, pars=c("rho", "mu", "sigma", "nu"))
 ```
 
 ![]({{ site.baseurl }}/images/robust_correlation_images/unnamed-chunk-12-2.png)
 
-``` r
+```r
 stan_plot(cor.noisy, pars=c("rho", "mu", "sigma", "nu"))
 ```
 
@@ -345,7 +345,7 @@ The posterior distribution of `rho` hasn't changed that much, but notice the dif
 
 Now, let's see how the inferred bivariate *t*-distribution fits the noisy data.
 
-``` r
+```r
 x.rand = extract(cor.noisy, c("x_rand"))[[1]]
 plot(x.noisy, xlim=c(-230, 230), ylim=c(-400, 400), pch=16)
 dataEllipse(x.rand, levels = c(0.5, 0.95),
@@ -358,20 +358,20 @@ The bivariate *t*-distribution seems to have a similar fit than the one inferred
 
 Now that we have seen how the model provides robust estimation of the correlation coefficient, it would be good to take a good look at the estimated `rho`. Let's extract the MCMC samples for this parameter's posterior from the `cor.noisy` object produced by the `stan` function.
 
-``` r
+```r
 rho.noisy = as.numeric(extract(cor.noisy, "rho")[[1]])
 length(rho.noisy)  # number of MCMC samples
 ```
 
     ## [1] 12000
 
-``` r
+```r
 mean(rho.noisy)    # posterior mean
 ```
 
     ## [1] -0.9302644
 
-``` r
+```r
 HPDinterval(as.mcmc(rho.noisy), prob=0.99)  # 99% highest posterior density interval
 ```
 
@@ -384,7 +384,7 @@ HPDinterval(as.mcmc(rho.noisy), prob=0.99)  # 99% highest posterior density inte
 
 For example, let's run a standard correlation test on the noisy data.
 
-``` r
+```r
 cor.test(x.noisy[,1], x.noisy[,2], method="pearson")
 ```
 
@@ -406,7 +406,7 @@ The small *p*-value tells us what is the probability that values such as those i
 
 So, frequentist correlation tests have a rather indirect way of providing information about the true correlation coefficient. Let's see now what we can say about this from the Bayesian standpoint. In Bayesian statistics, the true value of the parameter of interest is not a fixed quantity, but it has a probability distribution. We can investigate this distribution empirically simply by looking at the MCMC samples.
 
-``` r
+```r
 # Print some posterior statistics
 # Posterior mean of rho:
 mean(rho.noisy)
@@ -414,7 +414,7 @@ mean(rho.noisy)
 
     ## [1] -0.9302644
 
-``` r
+```r
 # Rho values with 99% posterior probability:
 hpd99 = HPDinterval(as.mcmc(rho.noisy), prob=0.99)
 cat("[", hpd99[,"lower"], ", ", hpd99[,"upper"], "]", sep="")
@@ -422,28 +422,28 @@ cat("[", hpd99[,"lower"], ", ", hpd99[,"upper"], "]", sep="")
 
     ## [-0.9822283, -0.8269327]
 
-``` r
+```r
 # Posterior probability that rho is ≤0: P(rho ≤ 0)
 mean(rho.noisy <= 0)
 ```
 
     ## [1] 1
 
-``` r
+```r
 # Posterior probability that rho is ≥0: P(rho ≥ 0)
 mean(rho.noisy >= 0)
 ```
 
     ## [1] 0
 
-``` r
+```r
 # Posterior probability that rho is <-0.5: P(rho < -0.5)
 mean(rho.noisy < -0.5)
 ```
 
     ## [1] 1
 
-``` r
+```r
 # Posterior probability that rho is small: P(-0.1 < rho < 0.1)
 mean(rho.noisy > -0.1 & rho.noisy < 0.1)
 ```
@@ -462,7 +462,7 @@ However, it is important to note that the precision of our posterior estimates w
 
 Finally, I have wrapped the model itself and the code that runs it inside a function called `rob.cor.mcmc`, which is in the file [`rob.cor.mcmc.R`](https://github.com/baezortega/bayes/blob/master/robust_correlation/rob.cor.mcmc.R). This uses a default of 6000 MCMC iterations and a single chain in order to run faster, but this can be altered using the arguments `iter`, `warmup` and `chains`). This function plots the MCMC trace and posterior distribution for `rho`, prints a handful of basic posterior statistics and returns the same object generated by the `stan` function, from which you can then extract much more information using the `rstan` and `coda` packages.
 
-``` r
+```r
 source("rob.cor.mcmc.R")
 cor.noisy2 = rob.cor.mcmc(x.noisy)
 ```

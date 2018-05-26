@@ -63,6 +63,7 @@ h1 {
 
 h2 {
   font-size: 24px;
+  font-style: italic;
 }
 
 h3 {
@@ -74,6 +75,8 @@ h4 {
   font-size: 18px;
   color: $gray;
   font-style: italic;
+  line-height: 1;
+  margin-bottom: 2em 0 30px;
 }
 
 p {

@@ -62,6 +62,7 @@ h1 {
 }
 
 h2 {
+  line-height: 1;
   font-size: 24px;
   font-style: italic;
 }
@@ -75,12 +76,12 @@ h4 {
   font-size: 18px;
   color: $gray;
   font-style: italic;
-  line-height: 1;
-  margin-bottom: 2em 0 30px;
+  line-height: 1.5;
+  margin-bottom: 30px;
 }
 
 p {
-  margin: 15px 0;
+  margin: 20px 0;
 }
 
 a {

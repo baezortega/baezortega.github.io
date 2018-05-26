@@ -43,6 +43,7 @@ pre {
 .post-title h1 {
   font-family: $georgia;
   font-size: 32px;
+  line-height: 1;
   a {
     color: inherit;
   }
@@ -55,6 +56,7 @@ pre {
   line-height: 0.5;
   font-size: 28px;
   margin-bottom: 30px;
+  line-height: 1;
 }
 
 .post-title h3 {
@@ -62,6 +64,7 @@ pre {
   font-weight: normal;
   font-style: italic;
   font-size: 20px;
+  line-height: 1;
 }
 
 .post-title h4 {
@@ -70,7 +73,7 @@ pre {
   font-style: italic;
   font-size: 19px;
   color: $gray;
-  line-height: 1.5;
+  line-height: 1;
   margin-bottom: 40px;
 }
 

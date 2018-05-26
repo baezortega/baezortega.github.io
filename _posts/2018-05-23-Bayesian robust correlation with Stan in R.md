@@ -48,7 +48,7 @@ x.clean = rmvnorm(n=40, sigma=cov.mat)
 plot(x.clean, pch=16)
 ```
 
-![](robust_correlation_files/figure-markdown_github/unnamed-chunk-2-1.png)
+![]({{ site.baseurl }}/images/robust_correlation_images/figure-markdown_github/unnamed-chunk-2-1.png)
 
 Let's first take a look at the classical correlation coefficients (Pearson's and Spearman's) on these data.
 
@@ -75,7 +75,7 @@ x.noisy[1:3,] = matrix(c(-40, -60,
 plot(x.noisy, pch=16)
 ```
 
-![](robust_correlation_files/figure-markdown_github/unnamed-chunk-4-1.png)
+![]({{ site.baseurl }}/images/robust_correlation_images/figure-markdown_github/unnamed-chunk-4-1.png)
 
 Now, classical methods are not happy with this kind of non-normal outliers, and both correlation coefficients decrease. While Pearson's correlation is more sensitive, these outliers are extreme enough to have a large impact on Spearman's as well.
 
@@ -204,13 +204,13 @@ We can take a look at the MCMC traces and the posterior distributions for `rho` 
 stan_trace(cor.clean, pars=c("rho", "mu", "sigma", "nu"))
 ```
 
-![](robust_correlation_files/figure-markdown_github/unnamed-chunk-8-1.png)
+![]({{ site.baseurl }}/images/robust_correlation_images/figure-markdown_github/unnamed-chunk-8-1.png)
 
 ``` r
 stan_dens(cor.clean, pars=c("rho", "mu", "sigma", "nu"))
 ```
 
-![](robust_correlation_files/figure-markdown_github/unnamed-chunk-8-2.png)
+![]({{ site.baseurl }}/images/robust_correlation_images/figure-markdown_github/unnamed-chunk-8-2.png)
 
 ``` r
 stan_plot(cor.clean, pars=c("rho", "mu", "sigma", "nu"))
@@ -220,7 +220,7 @@ stan_plot(cor.clean, pars=c("rho", "mu", "sigma", "nu"))
 
     ## outer_level: 0.95 (95% intervals)
 
-![](robust_correlation_files/figure-markdown_github/unnamed-chunk-8-3.png)
+![]({{ site.baseurl }}/images/robust_correlation_images/figure-markdown_github/unnamed-chunk-8-3.png)
 
 The traces show convergence of the two MCMC chains, and almost all the weight of the posterior distribution of `rho` lies between -0.90 and -1. The posterior of `nu` covers large values, indicating that the data are normally distributed (remember that a *t*-distribution with high `nu` is equivalent to a normal distribution).
 
@@ -233,7 +233,7 @@ dataEllipse(x.rand, levels = c(0.5, 0.95),
             fill=T, plot.points = FALSE)
 ```
 
-![](robust_correlation_files/figure-markdown_github/unnamed-chunk-9-1.png)
+![]({{ site.baseurl }}/images/robust_correlation_images/figure-markdown_github/unnamed-chunk-9-1.png)
 
 In the plot above, the dark-blue inner ellipse is the area containing 50% of the posterior distribution, and the pale-blue outer ellipse is the area containing 95% of the distribution.
 
@@ -323,13 +323,13 @@ cor.noisy = stan(file="robust_correlation.stan",
 stan_trace(cor.noisy, pars=c("rho", "mu", "sigma", "nu"))
 ```
 
-![](robust_correlation_files/figure-markdown_github/unnamed-chunk-12-1.png)
+![]({{ site.baseurl }}/images/robust_correlation_images/figure-markdown_github/unnamed-chunk-12-1.png)
 
 ``` r
 stan_dens(cor.noisy, pars=c("rho", "mu", "sigma", "nu"))
 ```
 
-![](robust_correlation_files/figure-markdown_github/unnamed-chunk-12-2.png)
+![]({{ site.baseurl }}/images/robust_correlation_images/figure-markdown_github/unnamed-chunk-12-2.png)
 
 ``` r
 stan_plot(cor.noisy, pars=c("rho", "mu", "sigma", "nu"))
@@ -339,7 +339,7 @@ stan_plot(cor.noisy, pars=c("rho", "mu", "sigma", "nu"))
 
     ## outer_level: 0.95 (95% intervals)
 
-![](robust_correlation_files/figure-markdown_github/unnamed-chunk-12-3.png)
+![]({{ site.baseurl }}/images/robust_correlation_images/figure-markdown_github/unnamed-chunk-12-3.png)
 
 The posterior distribution of `rho` hasn't changed that much, but notice the difference in the posterior of `nu`. Lower values of `nu` indicate that the inferred bivariate *t*-distribution has heavy tails this time (i.e. is far from normality), in order to accommodate the outliers. If this noise were not accommodated in `nu` (e.g. if we used a normal distribution), then it would have to be accommodated in the distribution of `rho`, thus strongly biasing the correlation estimates.
 
@@ -352,7 +352,7 @@ dataEllipse(x.rand, levels = c(0.5, 0.95),
             fill=T, plot.points = FALSE)
 ```
 
-![](robust_correlation_files/figure-markdown_github/unnamed-chunk-13-1.png)
+![]({{ site.baseurl }}/images/robust_correlation_images/figure-markdown_github/unnamed-chunk-13-1.png)
 
 The bivariate *t*-distribution seems to have a similar fit than the one inferred from the clean data; its slope is not affected by the outliers. However, notice how the tails of the distribution (pale-blue outer ellipse) have grown much wider than before.
 
@@ -492,7 +492,7 @@ cor.noisy2 = rob.cor.mcmc(x.noisy)
     ##                30.0936 seconds (Sampling)
     ##                45.8458 seconds (Total)
 
-![](robust_correlation_files/figure-markdown_github/unnamed-chunk-18-1.png)
+![]({{ site.baseurl }}/images/robust_correlation_images/figure-markdown_github/unnamed-chunk-18-1.png)
 
     ## POSTERIOR STATISTICS OF RHO
     ## Posterior mean and standard deviation:     Mean = -0.9300314, SD = 0.03092218

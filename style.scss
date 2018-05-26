@@ -21,6 +21,7 @@ body {
   background: $white;
   font: 19px/1.4 $georgia;
   color: $darkGray;
+  line-height: 30px;
 }
 
 p {
@@ -40,7 +41,7 @@ pre {
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: $helveticaNeue;
+  font-family: $georgia;
   color: $darkerGray;
   font-weight: bold;
 
@@ -213,6 +214,7 @@ img {
   margin: -5px 0 0 0;
   color: $gray;
   font-size: 16px;
+  font-family: $helvetica;
 
   @include mobile {
     margin: 3px 0;

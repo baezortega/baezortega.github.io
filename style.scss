@@ -240,14 +240,15 @@ img {
   cursor: pointer;
   font-family: $helveticaNeue;
   font-weight: 200;
-  font-size: 35px;
+  font-size: 50px;
   letter-spacing: 1px;
+  line-height: 1;
 }
 
 .site-description {
-  margin: -9px 0 0 0;
+  margin: -1px 0 0 0;
   color: $gray;
-  font-size: 18px;
+  font-size: 19px;
   font-family: $helvetica;
 
   @include mobile {

@@ -19,8 +19,17 @@ html {
 
 body {
   background: $white;
-  font: 18px/1.4 $helvetica;
+  font: 19px/1.4 $georgia;
   color: $darkGray;
+}
+
+p {
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+
+pre {
+  font-size: 15px;
 }
 
 .container {
@@ -269,19 +278,6 @@ nav {
     font-size: 15px;
   }
   
-  body {
-    font-size: 19px;
-    font-family: Georgia;
-  }
-  
-  p {
-    margin-bottom: 20px;
-    margin-top: 20px;
-  }
-  
-  pre {
-    font-size: 15px;
-  }
 }
 
 .wrapper-footer {

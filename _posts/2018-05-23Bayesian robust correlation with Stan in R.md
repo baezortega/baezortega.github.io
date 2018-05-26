@@ -1,8 +1,8 @@
 ---
 layout: post
 title: Bayesian robust correlation with Stan in R
-subtitle: "(and why you should use Bayesian methods)\n"
-author: "Adrian Baez-Ortega"
+subtitle: (and why you should use Bayesian methods)
+author: Adrian Baez-Ortega
 date: 2018/05/23
 ---
 

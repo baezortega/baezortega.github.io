@@ -21,7 +21,7 @@ body {
   background: $white;
   font: 19px/1.4 $georgia;
   color: $darkGray;
-  line-height: 30px;
+  line-height: 27px;
 }
 
 p {
@@ -35,15 +35,22 @@ pre {
 
 .container {
   margin: 0 auto;
-  max-width: 740px;
+  max-width: 940px;
   padding: 0 10px;
   width: 100%;
 }
 
+.language-r {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+  white-space: pre;
+}
+
 .post-title h1 {
   font-family: $georgia;
-  font-size: 32px;
+  font-size: 40px;
   line-height: 1;
+  font-weight: normal;
   a {
     color: inherit;
   }
@@ -303,7 +310,6 @@ nav {
 .post {
   blockquote {
     margin: 1.8em .8em;
-    border-left: 2px solid $gray;
     padding: 0.1em 1em;
     font-size: 19px;
     background-color: #EEEEEE;

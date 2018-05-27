@@ -11,7 +11,7 @@ While looking for a Bayesian replacement for my in-house robust correlation meth
 
 As Rasmus Bååth explains in his [first blog post](http://www.sumsar.net/blog/2013/08/bayesian-estimation-of-correlation/) on Bayesian correlation:
 
-> The model that a classical Pearson’s correlation test assumes is that the data follows a bivariate normal distribution. That is, if we have a list $x$ of pairs of data points $[[x_{1,1}, x_{1,2}], [x_{2,1}, x_{2,2}], [x_{3,1}, x_{3,2}], ...]$ then the $x_{i,1}$s and the $x_{i,2}$s are each assumed to be normally distributed with a possible linear dependency between them. This dependency is quantified by the correlation parameter *ρ* which is what we want to estimate in a correlation analysis. A good visualization of a bivariate normal distribution with *ρ* = 0.3 can be found on the the wikipedia page on the multivariate normal distribution :
+> The model that a classical Pearson’s correlation test assumes is that the data follows a bivariate normal distribution. That is, if we have a list _x_ of pairs of data points \[\[_x_<sub>1,1</sub>, _x_<sub>1,2</sub>\], \[_x_<sub>2,1</sub>, _x_<sub>2,2</sub>\], \[_x_<sub>3,1</sub>, _x_<sub>3,2</sub>\], ...\] then the _x_<sub>i,1</sub>s and the _x_<sub>i,2</sub>s are each assumed to be normally distributed with a possible linear dependency between them. This dependency is quantified by the correlation parameter _ρ_ which is what we want to estimate in a correlation analysis. A good visualization of a bivariate normal distribution with _ρ_ = 0.3 can be found on the the wikipedia page on the multivariate normal distribution :
 
 ![](http://www.sumsar.net/figures/2013-08-18-bayesian-estimation-of-correlation/bivariate_normal_distribution.png)
 

@@ -9,8 +9,8 @@ name: in silico
 description: Naïve thoughts on data
 
 # URL of your avatar or profile pic (you could use your GitHub profile pic)
-avatar: images/double_helix.png
-favicon: images/double_helix_icon.png
+avatar: /images/double_helix.png
+favicon: /images/double_helix_icon.png
 
 #
 # Flags below are optional

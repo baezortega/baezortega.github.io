@@ -7,7 +7,7 @@ date: 2018/05/23
 ---
 
 
-While looking for a Bayesian replacement for my in-house robust correlation method (Spearman's correlation with bootstrap resampling), I found two very interesting posts on [standard](http://www.sumsar.net/blog/2013/08/bayesian-estimation-of-correlation/) and [robust](http://www.sumsar.net/blog/2013/08/robust-bayesian-estimation-of-correlation/) Bayesian correlation models in **Rasmus Bååth**'s blog. As I wanted to give the robust model a try on my own data (and also combine it with a robust regression model) I have translated Bååth's JAGS code into Stan and wrapped it inside a function. Below I show how this model is more suitable than classical correlation coefficients, regardless of whether the data are normally distributed, $$x_i$$.
+While looking for a Bayesian replacement for my in-house robust correlation method (Spearman's correlation with bootstrap resampling), I found two very interesting posts on [standard](http://www.sumsar.net/blog/2013/08/bayesian-estimation-of-correlation/) and [robust](http://www.sumsar.net/blog/2013/08/robust-bayesian-estimation-of-correlation/) Bayesian correlation models in **Rasmus Bååth**'s blog. As I wanted to give the robust model a try on my own data (and also combine it with a robust regression model) I have translated Bååth's JAGS code into Stan and wrapped it inside a function. Below I show how this model is more suitable than classical correlation coefficients, regardless of whether the data are normally distributed.
 
 As Rasmus Bååth explains in his [first blog post](http://www.sumsar.net/blog/2013/08/bayesian-estimation-of-correlation/) on Bayesian correlation:
 

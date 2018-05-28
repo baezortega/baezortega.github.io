@@ -91,7 +91,7 @@ cor(x.noisy, method="spearman")[1, 2]
 
     ## [1] -0.6602251
 
-Now, as Bååth explained, we would like a model that is able to recognise the linear correlation in the bulk of the data, while accounting for the outliers as infrequent observations. The *t*-distribution does this naturally and dynamically, as long as we treat the degrees of freedom (`nu`) as a parameter with its own prior distribution.
+As Bååth explained, we would like a model that is able to recognise the linear correlation in the bulk of the data, while accounting for the outliers as infrequent observations. The *t*-distribution does this naturally and dynamically, as long as we treat the degrees of freedom (`nu`) as a parameter with its own prior distribution.
 
 The code for my initial Stan version of Bååth's multivariate *t* model is shown below. I stuck pretty much to Bååth's formulation, defining suitable noninformative priors for all model parameters; for the prior on `nu`, I followed the recommendation I found on [John Kruschke's blog](http://doingbayesiandataanalysis.blogspot.co.uk/2015/12/prior-on-df-normality-parameter-in-t.html).
 

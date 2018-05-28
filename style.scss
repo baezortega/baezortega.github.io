@@ -363,6 +363,10 @@ sub {
   vertical-align: sub;
 }
 
+sup {
+  vertical-align: super;
+}
+
 // Syntax highlighting
 div.language-r.highlighter-rouge span.p, div.language-r.highlighter-rouge span.o {
   color: rgb(104, 118, 135);

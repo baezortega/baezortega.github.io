@@ -804,3 +804,5 @@ cor.noisy2 = rob.cor.mcmc(x.noisy)
     ## Posterior probability that rho is weak:    P(-0.1 < rho < 0.1) = 0
 
 So, apart from having a sound statistical model that I can now use to estimate correlation in my noisy, noisy data, I will hopefully have convinced you (if you needed any convincing) of the potential of Bayesian methods for robust, flexible and clear data analysis.
+
+---

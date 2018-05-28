@@ -364,24 +364,24 @@ sub {
 }
 
 // Syntax highlighting
-span.p, span.o {
+div.language-r.highlighter-rouge span.p, div.language-r.highlighter-rouge span.o {
   color: rgb(104, 118, 135);
 }
 
-span.c1 {
+div.language-r.highlighter-rouge span.c1 {
   color: #998;
   font-style: italic;
 }
 
-span.m {
+div.language-r.highlighter-rouge span.m {
   color: #099;
 }
 
-span.kc, span.nb {
+div.language-r.highlighter-rouge span.kc, div.language-r.highlighter-rouge span.nb {
   color: #990073;
 }
 
-span.s2 {
+div.language-r.highlighter-rouge span.s2 {
   color: #d14;
 }
 

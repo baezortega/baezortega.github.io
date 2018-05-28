@@ -315,7 +315,7 @@ stan_plot(cor.clean, pars=c("rho", "mu", "sigma", "nu"))
 
 The traces suggest convergence of the four MCMC chains, and almost all the weight of the posterior distribution of `rho` lies between -0.90 and -1. The posterior of `nu` covers large values, indicating that the data are normally distributed (remember that a *t*-distribution with high `nu` is equivalent to a normal distribution).
 
-To make sure that the model is behaving well, we can take a look at the effective sample sizes and the values of the Gelman-Rubin convergence statistic (*R-hat*).
+To make sure that the model is behaving well, we can take a look at the effective sample sizes and the values of the *R-hat* convergence statistic.
 
 ``` r
 print(cor.clean)

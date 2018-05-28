@@ -8,3 +8,5 @@ Gemfile
 Gemfile.lock
 node_modules
 package.json
+
+prepare_github_md.sh

@@ -3,7 +3,7 @@ layout: post
 title: Bayesian robust correlation with Stan in R
 subtitle: (and why you should use Bayesian methods)
 author: Adrian Baez-Ortega
-date: 2018/05/23
+date: 2018/05/28
 ---
 
 
@@ -137,9 +137,9 @@ Now, although this initial model worked well (because of the relative simplicity
 > -   Generate `x_rand` in the `generated quantities` block for extra speedup.
 > -   Don't use `uniform()` prior. It's not needed for `rho`, which has implicit uniform prior on constrained range. Don't use uniform to constrain parameters, so for `sigma` it's better to use, e.g. half-normal.
 > -   `nu` below 1 is unlikely to be sensible, as then the distribution has no finite moments (except 0th moment), so use constraint `<lower=1>`.
-> -   `exponential(1/30)` gives a lot of mass for very large values of `nu`, I prefer `gamma(2,0.1)`, proposed and anlysed by Juárez and Steel (2010). See also discussion in <https://github.com/stan-dev/stan/wiki/Prior-Choice-Recommendations>.
+> -   `exponential(1/30)` gives a lot of mass for very large values of `nu`, I prefer `gamma(2,0.1)`, proposed and anlysed by Juárez and Steel (2010). See also this [discussion](https://github.com/stan-dev/stan/wiki/Prior-Choice-Recommendations).
 
-As agree that these changes should make the model faster and better behaved, I'm adopting this 'Vehtarised' model, which is reproduced below and can be found in the file [`robust_correlation.stan`](https://github.com/baezortega/bayes/blob/master/robust_correlation/robust_correlation.stan).
+As I agree that these changes should make the model faster and better behaved, I'm adopting this 'Vehtarised' model, which is reproduced below and can be found in the file [`robust_correlation.stan`](https://github.com/baezortega/bayes/blob/master/robust_correlation/robust_correlation.stan).
 
     data {
         int<lower=1> N;  // number of observations

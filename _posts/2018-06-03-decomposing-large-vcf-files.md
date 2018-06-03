@@ -12,8 +12,8 @@ When looking at genetic variation in a set of sequencing data files, the process
     ##...
     ##...file header
     ##...
-    #CHROM  POS     ID  REF  ALT  QUAL  FILTER  INFO         FORMAT              Sample1  ...
-    1       266530  .   T    C    2948  PASS    BRF=0.0;...  GT:GL:GOF:GQ:NR:NV  0/0:0.0,-57.21,-300.0:1:99:209:0  ...
+    #CHROM  POS    ID  REF  ALT  QUAL  FILTER  INFO       FORMAT              Sample1        ...
+    1       26530  .   T    C    2948  PASS    BRF=0;...  GT:GL:GOF:GQ:NR:NV  0/0:...:209:0  ...
     ...
 
 The first 8 columns in each line (named `CHROM`, `POS`, `ID`, `REF`, `ALT`, `QUAL`, `FILTER`, `INFO`) contain information about the variant in question. I tend to call this the 'variant metadata', although it's probably not the most correct name – but I'm too old to change now. 
@@ -28,8 +28,7 @@ The script was written for Python 2.7, but it shouldn't be too hard to adapt for
 
 To know how to use the script, just call it with no arguments:
 
-``` script
-./decompose_vcf.py
+``` sh./decompose_vcf.py
 ```
 
     ## decompose_vcf.py
@@ -46,7 +45,7 @@ To know how to use the script, just call it with no arguments:
 
 So, if you have a large VCF named, say, `toomanyvariants.vcf`, and you are interested only in the fields `GT`, `NR` and `NV`, then you can extract those via:
 
-``` script
+``` sh
 ./decompose_vcf.py toomanyvariants.vcf GT NR NV
 ```
 
@@ -66,7 +65,7 @@ If we wanted to extract all the fields in the genotype data, we would just speci
 
 Let's compare the input and output files.
 
-``` script
+``` sh
 ls -lh toomanyvariants* | awk '{print $5"\t"$9}'
 ```
 

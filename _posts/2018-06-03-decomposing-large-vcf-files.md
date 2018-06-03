@@ -17,15 +17,17 @@ When looking at genetic variation in a set of sequencing data files, the process
     ...
     ...
 
-The first 8 columns in each line (named `CHROM`, `POS`, `ID`, `REF`, `ALT`, `QUAL`, `FILTER`, `INFO`) contain information about the variant in question. I tend to call this the 'variant metadata', although it's probably not the most correct name – but I'm too old to change now. 
+The first 8 columns in each line (named `CHROM`, `POS`, `ID`, `REF`, `ALT`, `QUAL`, `FILTER`, `INFO`) contain information about the variant in question. I tend to call this the 'variant metadata', although it's probably not the most correct name. But I'm too old to change now. 
 
 After these 8 columns follows the information about the genotype of the variant in each of the samples; these are numerical values separated by colons (`:`). The `FORMAT` column indicates what each of these colon-delimited values mean, which is something that changes depending on the variant calling software. In the example above, the `FORMAT` column tells us that the values in the following columns represent, respectively, the genotype (`GT`), the genotype likelihood (`GL`), the goodness of fit (`GOF`), the genotype quality (`GQ`), the number of reads at the variant locus (`NR`) and the number of reads supporting the variant at the variant locus (`NV`). This is normally explained somewhere in the header of the VCF file.
 
-If you want to analyse these variants in, say, R, you would need to read this VCF and decompose it so that you can access the colon-delimited values in the genotype information. If your VCF is small (say, less than 1 GB) then you can read it directly into R with the `read.table` function. However, my VCFs are rarely small (my personal record is in 50 GB for a single file), which means that directly reading the VCF from R is not an option. Even worse, most of the space in the VCF will be taken up by the colon-separated values in the sample genotype columns, and I'm not normally interested in most of these values (I only use the last two in my analyses). So I thought, wouldn't it be nice to decompose the VCF _outside_ R (using a faster language) and read only the data that I'm interested in?
+If you want to analyse these variants in, say, R, you would need to read this VCF and decompose it so that you can access the colon-delimited values in the genotype information. If your VCF is small (say, less than 1 GB) then you can read it directly into R with the `read.table` function. However, my VCFs are rarely small (my personal record is 50 GB for a single file), which means that directly reading the VCF from R is not an option. Even worse, most of the space in the VCF is taken up by the colon-separated values in the sample genotype columns, and we are not normally interested in all of these values (I only use two of them). 
 
-To do this, I wrote a small Python script ([decompose_vcf.py](https://github.com/baezortega/misc/blob/master/decompose_vcf.py)) which processes a VCF file (with extension `.vcf`), or a gzipped VCF file (with extension `.vcf.gz`) and extracts the variant metadata (first 8 columns), and any other values you need from the genotype data (e.g. `GT`, `GL`, etc.), into separate text files. This works regardless of which variant caller you used, because the format of the metadata columns if fixed, whereas the format of the genotype data is specified in the `FORMAT` column.
+So I thought, wouldn't it be nice to decompose the VCF _outside_ R (in a faster language) and import only the data that I'm interested in?
 
-The script was written for Python 2.7, but it shouldn't be too hard to adapt for Python 3. It requires the Python library `gzip` in order to open gzipped VCF files.
+To do this, I wrote a small Python script ([__`decompose_vcf.py`__](https://github.com/baezortega/misc/blob/master/decompose_vcf.py)) which processes a VCF file (with `.vcf` extension), or a gzipped VCF file (with `.vcf.gz` extension) and extracts the variant metadata (first 8 columns), and any other values that we need from the genotype data (e.g. `GT`, `GL`, etc.), into separate text files. This works regardless of which variant caller was used to make the VCF, because the format of the metadata columns if fixed, whereas the format of the genotype data is specified in the `FORMAT` column. (I suspect this was cleverly made on purpose.)
+
+I wrote the script for Python 2.7, but it shouldn't be too hard to adapt for Python 3. It requires the Python library `gzip` in order to open gzipped VCF files.
 
 To know how to use the script, just call it with no arguments:
 
@@ -43,7 +45,7 @@ To know how to use the script, just call it with no arguments:
     ## Input: Path to input VCF (.vcf) or gzipped VCF (.vcf.gz) file.
     ##        [Optional] List of value names of interest (as shown in the FORMAT field)
     ##
-    ## Usage: decompose_vcf.py /path/to/file.vcf.gz [GT GL NR NV ...]
+    ## Usage: decompose_vcf.py /path/to/file.vcf[.gz] [GT GL NR NV ...]
 
 So, if you have a large VCF named, say, `toomanyvariants.vcf`, and you are interested only in the fields `GT`, `NR` and `NV`, then you can extract those via:
 
@@ -65,7 +67,7 @@ So, if you have a large VCF named, say, `toomanyvariants.vcf`, and you are inter
 
 If we wanted to extract all the fields in the genotype data, we would just specify no field names and provide only the VCF file name, i.e. `./decompose_vcf.py toomanyvariants.vcf`.
 
-Let's compare the input and output files.
+Let's compare the size of the input and output files.
 
 ``` sh
 ls -lh toomanyvariants* | awk '{print $5"\t"$9}'
@@ -77,7 +79,7 @@ ls -lh toomanyvariants* | awk '{print $5"\t"$9}'
     ## 628M	toomanyvariants_NR.txt
     ## 429M	toomanyvariants_NV.txt
 
-The four output files should be quite easy to read from R using `read.table` (with argument `header=TRUE`). And the best thing is that the data is already decomposed into separate tables, so we can forget about the VCF format from here on.
+The four output files should be quite easy to read from R using `read.table` (with argument `header=TRUE`). And the best thing is that the data are already decomposed into separate tables, so we can forget about the VCF format from here on.
 
 
 ---

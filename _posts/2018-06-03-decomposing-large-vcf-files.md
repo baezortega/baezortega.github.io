@@ -25,7 +25,7 @@ If you want to analyse these variants in, say, R, you would need to read this VC
 
 So I thought, wouldn't it be nice to decompose the VCF _outside_ R (in a faster language) and import only the data that I'm interested in?
 
-To do this, I wrote a small Python script ([__`decompose_vcf.py`__](https://github.com/baezortega/misc/blob/master/decompose_vcf.py)) which processes a VCF file (with `.vcf` extension), or a gzipped VCF file (with `.vcf.gz` extension) and extracts the variant metadata (first 8 columns), and any other values that we need from the genotype data (e.g. `GT`, `GL`, etc.), into separate text files. This works regardless of which variant caller was used to make the VCF, because the format of the metadata columns if fixed, whereas the format of the genotype data is specified in the `FORMAT` column. (I suspect this was cleverly made on purpose.)
+To do this, __I wrote a small Python script ([`decompose_vcf.py`](https://github.com/baezortega/misc/blob/master/decompose_vcf.py))__ which processes a VCF file (with `.vcf` extension), or a gzipped VCF file (with `.vcf.gz` extension) and extracts the variant metadata (first 8 columns), and any other values that we need from the genotype data (e.g. `GT`, `GL`, etc.), into separate text files. This works regardless of which variant caller was used to make the VCF, because the format of the metadata columns if fixed, whereas the format of the genotype data is specified in the `FORMAT` column. (I suspect this was cleverly made on purpose.)
 
 I wrote the script for Python 2.7, but it shouldn't be too hard to adapt for Python 3. It requires the Python library `gzip` in order to open gzipped VCF files.
 

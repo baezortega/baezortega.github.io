@@ -15,6 +15,7 @@ When looking at genetic variation in a set of sequencing data files, the process
     #CHROM  POS    ID  REF  ALT  QUAL  FILTER  INFO       FORMAT              Sample1        ...
     1       26530  .   T    C    2948  PASS    BRF=0;...  GT:GL:GOF:GQ:NR:NV  0/0:...:209:0  ...
     ...
+    ...
 
 The first 8 columns in each line (named `CHROM`, `POS`, `ID`, `REF`, `ALT`, `QUAL`, `FILTER`, `INFO`) contain information about the variant in question. I tend to call this the 'variant metadata', although it's probably not the most correct name – but I'm too old to change now. 
 
@@ -28,7 +29,8 @@ The script was written for Python 2.7, but it shouldn't be too hard to adapt for
 
 To know how to use the script, just call it with no arguments:
 
-``` sh./decompose_vcf.py
+``` sh
+./decompose_vcf.py
 ```
 
     ## decompose_vcf.py
@@ -76,5 +78,6 @@ ls -lh toomanyvariants* | awk '{print $5"\t"$9}'
     ## 429M	toomanyvariants_NV.txt
 
 The four output files should be quite easy to read from R using `read.table` (with argument `header=TRUE`). And the best thing is that the data is already decomposed into separate tables, so we can forget about the VCF format from here on.
+
 
 ---

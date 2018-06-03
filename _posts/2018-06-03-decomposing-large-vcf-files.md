@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Decomposing massive VCF files with Python
+title: Decomposing large VCF files with Python
 author: Adrian Baez-Ortega
 date: 2018/06/03
 ---

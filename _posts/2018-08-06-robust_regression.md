@@ -6,7 +6,6 @@ date: 2018/08/06
 ---
 
 
-</br>
 
 Simple linear regression is a very popular technique for estimating the linear relationship between two variables based on matched pairs of observations, as well as for predicting the probable value of one variable (the *response* variable) according to the value of the other (the *explanatory* variable). When plotting the results of linear regression graphically, the explanatory variable is normally plotted on the *x*-axis, and the response variable on the *y*-axis.
 

@@ -13,7 +13,7 @@ The standard approach to linear regression is defining the equation for a straig
 <center>
 𝑦 = 𝛼 + 𝛽𝑥 + 𝜀
 </center>
-In this equation, *ε* represents the error in the linear relationship: if no noise were allowed, then the paired *x*- and *y*-values would need to be arranged in a perfect straight line (for example, as in *y* = 2\_x\_ + 1). Because we assume that the relationship between *x* and *y* is truly linear, any variation observed around the regression line must be random noise, and therefore normally distributed. From a probabilistic standpoint, such relationship between the variables could be formalised as
+In this equation, *ε* represents the error in the linear relationship: if no noise were allowed, then the paired *x*- and *y*-values would need to be arranged in a perfect straight line (for example, as in *y* = 2*x* + 1). Because we assume that the relationship between *x* and *y* is truly linear, any variation observed around the regression line must be random noise, and therefore normally distributed. From a probabilistic standpoint, such relationship between the variables could be formalised as
 
 <center>
 𝑦 ~ 𝓝(𝛼 + 𝛽𝑥, 𝜎)
@@ -164,8 +164,8 @@ reg.clean = stan(file="robust_regression.stan", data=data.clean,
     ## 
     ## SAMPLING FOR MODEL 'robust_regression' NOW (CHAIN 1).
     ## 
-    ## Gradient evaluation took 1.6e-05 seconds
-    ## 1000 transitions using 10 leapfrog steps per transition would take 0.16 seconds.
+    ## Gradient evaluation took 1.2e-05 seconds
+    ## 1000 transitions using 10 leapfrog steps per transition would take 0.12 seconds.
     ## Adjust your expectations accordingly!
     ## 
     ## 
@@ -182,15 +182,15 @@ reg.clean = stan(file="robust_regression.stan", data=data.clean,
     ## Iteration: 900 / 1000 [ 90%]  (Sampling)
     ## Iteration: 1000 / 1000 [100%]  (Sampling)
     ## 
-    ##  Elapsed Time: 0.043338 seconds (Warm-up)
-    ##                0.030566 seconds (Sampling)
-    ##                0.073904 seconds (Total)
+    ##  Elapsed Time: 0.039895 seconds (Warm-up)
+    ##                0.026191 seconds (Sampling)
+    ##                0.066086 seconds (Total)
     ## 
     ## 
     ## SAMPLING FOR MODEL 'robust_regression' NOW (CHAIN 2).
     ## 
-    ## Gradient evaluation took 1.1e-05 seconds
-    ## 1000 transitions using 10 leapfrog steps per transition would take 0.11 seconds.
+    ## Gradient evaluation took 1.5e-05 seconds
+    ## 1000 transitions using 10 leapfrog steps per transition would take 0.15 seconds.
     ## Adjust your expectations accordingly!
     ## 
     ## 
@@ -207,15 +207,15 @@ reg.clean = stan(file="robust_regression.stan", data=data.clean,
     ## Iteration: 900 / 1000 [ 90%]  (Sampling)
     ## Iteration: 1000 / 1000 [100%]  (Sampling)
     ## 
-    ##  Elapsed Time: 0.038983 seconds (Warm-up)
-    ##                0.027325 seconds (Sampling)
-    ##                0.066308 seconds (Total)
+    ##  Elapsed Time: 0.039082 seconds (Warm-up)
+    ##                0.026199 seconds (Sampling)
+    ##                0.065281 seconds (Total)
     ## 
     ## 
     ## SAMPLING FOR MODEL 'robust_regression' NOW (CHAIN 3).
     ## 
-    ## Gradient evaluation took 1.1e-05 seconds
-    ## 1000 transitions using 10 leapfrog steps per transition would take 0.11 seconds.
+    ## Gradient evaluation took 1.2e-05 seconds
+    ## 1000 transitions using 10 leapfrog steps per transition would take 0.12 seconds.
     ## Adjust your expectations accordingly!
     ## 
     ## 
@@ -232,15 +232,15 @@ reg.clean = stan(file="robust_regression.stan", data=data.clean,
     ## Iteration: 900 / 1000 [ 90%]  (Sampling)
     ## Iteration: 1000 / 1000 [100%]  (Sampling)
     ## 
-    ##  Elapsed Time: 0.044687 seconds (Warm-up)
-    ##                0.024059 seconds (Sampling)
-    ##                0.068746 seconds (Total)
+    ##  Elapsed Time: 0.042808 seconds (Warm-up)
+    ##                0.023388 seconds (Sampling)
+    ##                0.066196 seconds (Total)
     ## 
     ## 
     ## SAMPLING FOR MODEL 'robust_regression' NOW (CHAIN 4).
     ## 
-    ## Gradient evaluation took 1.3e-05 seconds
-    ## 1000 transitions using 10 leapfrog steps per transition would take 0.13 seconds.
+    ## Gradient evaluation took 1.4e-05 seconds
+    ## 1000 transitions using 10 leapfrog steps per transition would take 0.14 seconds.
     ## Adjust your expectations accordingly!
     ## 
     ## 
@@ -257,9 +257,9 @@ reg.clean = stan(file="robust_regression.stan", data=data.clean,
     ## Iteration: 900 / 1000 [ 90%]  (Sampling)
     ## Iteration: 1000 / 1000 [100%]  (Sampling)
     ## 
-    ##  Elapsed Time: 0.037261 seconds (Warm-up)
-    ##                0.035637 seconds (Sampling)
-    ##                0.072898 seconds (Total)
+    ##  Elapsed Time: 0.035621 seconds (Warm-up)
+    ##                0.029625 seconds (Sampling)
+    ##                0.065246 seconds (Total)
 
 We can take a look at the MCMC traces and the posterior distributions for `alpha`, `beta` (the intercept and slope of the regression line), `sigma` and `nu` (the spread and degrees of freedom of the *t*-distribution).
 
@@ -318,8 +318,8 @@ reg.noisy = stan(file="robust_regression.stan", data=data.noisy,
     ## 
     ## SAMPLING FOR MODEL 'robust_regression' NOW (CHAIN 1).
     ## 
-    ## Gradient evaluation took 1.2e-05 seconds
-    ## 1000 transitions using 10 leapfrog steps per transition would take 0.12 seconds.
+    ## Gradient evaluation took 1.3e-05 seconds
+    ## 1000 transitions using 10 leapfrog steps per transition would take 0.13 seconds.
     ## Adjust your expectations accordingly!
     ## 
     ## 
@@ -336,62 +336,12 @@ reg.noisy = stan(file="robust_regression.stan", data=data.noisy,
     ## Iteration: 900 / 1000 [ 90%]  (Sampling)
     ## Iteration: 1000 / 1000 [100%]  (Sampling)
     ## 
-    ##  Elapsed Time: 0.036844 seconds (Warm-up)
-    ##                0.024493 seconds (Sampling)
-    ##                0.061337 seconds (Total)
+    ##  Elapsed Time: 0.038151 seconds (Warm-up)
+    ##                0.024285 seconds (Sampling)
+    ##                0.062436 seconds (Total)
     ## 
     ## 
     ## SAMPLING FOR MODEL 'robust_regression' NOW (CHAIN 2).
-    ## 
-    ## Gradient evaluation took 2.7e-05 seconds
-    ## 1000 transitions using 10 leapfrog steps per transition would take 0.27 seconds.
-    ## Adjust your expectations accordingly!
-    ## 
-    ## 
-    ## Iteration:   1 / 1000 [  0%]  (Warmup)
-    ## Iteration: 100 / 1000 [ 10%]  (Warmup)
-    ## Iteration: 200 / 1000 [ 20%]  (Warmup)
-    ## Iteration: 300 / 1000 [ 30%]  (Warmup)
-    ## Iteration: 400 / 1000 [ 40%]  (Warmup)
-    ## Iteration: 500 / 1000 [ 50%]  (Warmup)
-    ## Iteration: 501 / 1000 [ 50%]  (Sampling)
-    ## Iteration: 600 / 1000 [ 60%]  (Sampling)
-    ## Iteration: 700 / 1000 [ 70%]  (Sampling)
-    ## Iteration: 800 / 1000 [ 80%]  (Sampling)
-    ## Iteration: 900 / 1000 [ 90%]  (Sampling)
-    ## Iteration: 1000 / 1000 [100%]  (Sampling)
-    ## 
-    ##  Elapsed Time: 0.042025 seconds (Warm-up)
-    ##                0.02723 seconds (Sampling)
-    ##                0.069255 seconds (Total)
-    ## 
-    ## 
-    ## SAMPLING FOR MODEL 'robust_regression' NOW (CHAIN 3).
-    ## 
-    ## Gradient evaluation took 1.1e-05 seconds
-    ## 1000 transitions using 10 leapfrog steps per transition would take 0.11 seconds.
-    ## Adjust your expectations accordingly!
-    ## 
-    ## 
-    ## Iteration:   1 / 1000 [  0%]  (Warmup)
-    ## Iteration: 100 / 1000 [ 10%]  (Warmup)
-    ## Iteration: 200 / 1000 [ 20%]  (Warmup)
-    ## Iteration: 300 / 1000 [ 30%]  (Warmup)
-    ## Iteration: 400 / 1000 [ 40%]  (Warmup)
-    ## Iteration: 500 / 1000 [ 50%]  (Warmup)
-    ## Iteration: 501 / 1000 [ 50%]  (Sampling)
-    ## Iteration: 600 / 1000 [ 60%]  (Sampling)
-    ## Iteration: 700 / 1000 [ 70%]  (Sampling)
-    ## Iteration: 800 / 1000 [ 80%]  (Sampling)
-    ## Iteration: 900 / 1000 [ 90%]  (Sampling)
-    ## Iteration: 1000 / 1000 [100%]  (Sampling)
-    ## 
-    ##  Elapsed Time: 0.039106 seconds (Warm-up)
-    ##                0.024432 seconds (Sampling)
-    ##                0.063538 seconds (Total)
-    ## 
-    ## 
-    ## SAMPLING FOR MODEL 'robust_regression' NOW (CHAIN 4).
     ## 
     ## Gradient evaluation took 1.3e-05 seconds
     ## 1000 transitions using 10 leapfrog steps per transition would take 0.13 seconds.
@@ -411,9 +361,59 @@ reg.noisy = stan(file="robust_regression.stan", data=data.noisy,
     ## Iteration: 900 / 1000 [ 90%]  (Sampling)
     ## Iteration: 1000 / 1000 [100%]  (Sampling)
     ## 
-    ##  Elapsed Time: 0.035637 seconds (Warm-up)
-    ##                0.022787 seconds (Sampling)
-    ##                0.058424 seconds (Total)
+    ##  Elapsed Time: 0.040687 seconds (Warm-up)
+    ##                0.023764 seconds (Sampling)
+    ##                0.064451 seconds (Total)
+    ## 
+    ## 
+    ## SAMPLING FOR MODEL 'robust_regression' NOW (CHAIN 3).
+    ## 
+    ## Gradient evaluation took 1e-05 seconds
+    ## 1000 transitions using 10 leapfrog steps per transition would take 0.1 seconds.
+    ## Adjust your expectations accordingly!
+    ## 
+    ## 
+    ## Iteration:   1 / 1000 [  0%]  (Warmup)
+    ## Iteration: 100 / 1000 [ 10%]  (Warmup)
+    ## Iteration: 200 / 1000 [ 20%]  (Warmup)
+    ## Iteration: 300 / 1000 [ 30%]  (Warmup)
+    ## Iteration: 400 / 1000 [ 40%]  (Warmup)
+    ## Iteration: 500 / 1000 [ 50%]  (Warmup)
+    ## Iteration: 501 / 1000 [ 50%]  (Sampling)
+    ## Iteration: 600 / 1000 [ 60%]  (Sampling)
+    ## Iteration: 700 / 1000 [ 70%]  (Sampling)
+    ## Iteration: 800 / 1000 [ 80%]  (Sampling)
+    ## Iteration: 900 / 1000 [ 90%]  (Sampling)
+    ## Iteration: 1000 / 1000 [100%]  (Sampling)
+    ## 
+    ##  Elapsed Time: 0.039823 seconds (Warm-up)
+    ##                0.023893 seconds (Sampling)
+    ##                0.063716 seconds (Total)
+    ## 
+    ## 
+    ## SAMPLING FOR MODEL 'robust_regression' NOW (CHAIN 4).
+    ## 
+    ## Gradient evaluation took 1.7e-05 seconds
+    ## 1000 transitions using 10 leapfrog steps per transition would take 0.17 seconds.
+    ## Adjust your expectations accordingly!
+    ## 
+    ## 
+    ## Iteration:   1 / 1000 [  0%]  (Warmup)
+    ## Iteration: 100 / 1000 [ 10%]  (Warmup)
+    ## Iteration: 200 / 1000 [ 20%]  (Warmup)
+    ## Iteration: 300 / 1000 [ 30%]  (Warmup)
+    ## Iteration: 400 / 1000 [ 40%]  (Warmup)
+    ## Iteration: 500 / 1000 [ 50%]  (Warmup)
+    ## Iteration: 501 / 1000 [ 50%]  (Sampling)
+    ## Iteration: 600 / 1000 [ 60%]  (Sampling)
+    ## Iteration: 700 / 1000 [ 70%]  (Sampling)
+    ## Iteration: 800 / 1000 [ 80%]  (Sampling)
+    ## Iteration: 900 / 1000 [ 90%]  (Sampling)
+    ## Iteration: 1000 / 1000 [100%]  (Sampling)
+    ## 
+    ##  Elapsed Time: 0.037346 seconds (Warm-up)
+    ##                0.022237 seconds (Sampling)
+    ##                0.059583 seconds (Total)
 
 ``` r
 stan_trace(reg.noisy, pars=c("alpha", "beta", "sigma", "nu"))
@@ -502,8 +502,8 @@ reg.noisy2 = stan(file="robust_regression.stan", data=data.noisy2,
     ## 
     ## SAMPLING FOR MODEL 'robust_regression' NOW (CHAIN 1).
     ## 
-    ## Gradient evaluation took 1.9e-05 seconds
-    ## 1000 transitions using 10 leapfrog steps per transition would take 0.19 seconds.
+    ## Gradient evaluation took 1.5e-05 seconds
+    ## 1000 transitions using 10 leapfrog steps per transition would take 0.15 seconds.
     ## Adjust your expectations accordingly!
     ## 
     ## 
@@ -520,9 +520,9 @@ reg.noisy2 = stan(file="robust_regression.stan", data=data.noisy2,
     ## Iteration: 2800 / 3000 [ 93%]  (Sampling)
     ## Iteration: 3000 / 3000 [100%]  (Sampling)
     ## 
-    ##  Elapsed Time: 0.081426 seconds (Warm-up)
-    ##                0.128096 seconds (Sampling)
-    ##                0.209522 seconds (Total)
+    ##  Elapsed Time: 0.077028 seconds (Warm-up)
+    ##                0.121909 seconds (Sampling)
+    ##                0.198937 seconds (Total)
     ## 
     ## 
     ## SAMPLING FOR MODEL 'robust_regression' NOW (CHAIN 2).
@@ -545,15 +545,15 @@ reg.noisy2 = stan(file="robust_regression.stan", data=data.noisy2,
     ## Iteration: 2800 / 3000 [ 93%]  (Sampling)
     ## Iteration: 3000 / 3000 [100%]  (Sampling)
     ## 
-    ##  Elapsed Time: 0.083061 seconds (Warm-up)
-    ##                0.127499 seconds (Sampling)
-    ##                0.21056 seconds (Total)
+    ##  Elapsed Time: 0.079265 seconds (Warm-up)
+    ##                0.12608 seconds (Sampling)
+    ##                0.205345 seconds (Total)
     ## 
     ## 
     ## SAMPLING FOR MODEL 'robust_regression' NOW (CHAIN 3).
     ## 
-    ## Gradient evaluation took 2.3e-05 seconds
-    ## 1000 transitions using 10 leapfrog steps per transition would take 0.23 seconds.
+    ## Gradient evaluation took 1.3e-05 seconds
+    ## 1000 transitions using 10 leapfrog steps per transition would take 0.13 seconds.
     ## Adjust your expectations accordingly!
     ## 
     ## 
@@ -570,15 +570,15 @@ reg.noisy2 = stan(file="robust_regression.stan", data=data.noisy2,
     ## Iteration: 2800 / 3000 [ 93%]  (Sampling)
     ## Iteration: 3000 / 3000 [100%]  (Sampling)
     ## 
-    ##  Elapsed Time: 0.088303 seconds (Warm-up)
-    ##                0.129067 seconds (Sampling)
-    ##                0.21737 seconds (Total)
+    ##  Elapsed Time: 0.08802 seconds (Warm-up)
+    ##                0.127249 seconds (Sampling)
+    ##                0.215269 seconds (Total)
     ## 
     ## 
     ## SAMPLING FOR MODEL 'robust_regression' NOW (CHAIN 4).
     ## 
-    ## Gradient evaluation took 1.4e-05 seconds
-    ## 1000 transitions using 10 leapfrog steps per transition would take 0.14 seconds.
+    ## Gradient evaluation took 1.6e-05 seconds
+    ## 1000 transitions using 10 leapfrog steps per transition would take 0.16 seconds.
     ## Adjust your expectations accordingly!
     ## 
     ## 
@@ -595,9 +595,9 @@ reg.noisy2 = stan(file="robust_regression.stan", data=data.noisy2,
     ## Iteration: 2800 / 3000 [ 93%]  (Sampling)
     ## Iteration: 3000 / 3000 [100%]  (Sampling)
     ## 
-    ##  Elapsed Time: 0.086485 seconds (Warm-up)
-    ##                0.14684 seconds (Sampling)
-    ##                0.233325 seconds (Total)
+    ##  Elapsed Time: 0.08512 seconds (Warm-up)
+    ##                0.138439 seconds (Sampling)
+    ##                0.223559 seconds (Total)
 
 Let's see those credible intervals; in fact, we'll plot [highest posterior density (HPD) intervals](https://en.wikipedia.org/wiki/Credible_interval#Choosing_a_credible_interval) instead of credible intervals, as they are more informative and easy to obtain with the `coda` package.
 
@@ -691,7 +691,7 @@ arrows(x0=x.pred,
 
 In the plot above, the grey area is defined by the 95% HPD intervals of the regression line (given by the posterior distributions of `alpha` and `beta`) at each of the *x*-values in `x_cred`. These HPD intervals correspond to the shortest intervals that capture 95% of the posterior probability of the position of the regression line (with this posterior probability being analogous to that shown in the illustration at the beginning of this post, but with the heavier tails of a *t*-distribution). A very interesting detail is that, while the confidence intervals that are typically calculated in a conventional linear model are derived using a formula (which assumes the data to be normally distributed around the regression line), in the Bayesian approach we actually *infer* the parameters of the line's distribution, and then draw random samples from this distribution in order to construct an *empirical* posterior probability interval. Thus, these HPD intervals can be seen as a more realistic, data-driven measure of the uncertainty concerning the position of the regression line.
 
-The same applies to the prediction intervals: while they are typically obtained through a formulation derived from a normality assumption, here, MCMC sampling is used to obtain empirical distributions of response values *drawn* from the model's posterior. In each MCMC sampling iteration, a value for the mean response, `mu_pred`, is drawn (sampled) from the distributions of `alpha` and `beta`, after which a response value, `y_pred`, is drawn from a *t*-distribution that has the sampled value of `mu_pred` as its location (see the model code above). Therefore, a Bayesian 95% prediction interval (which is just an HPD interval of the inferred distribution of `y_pred`) does not just mean that we are "confident" that a given v'lue of \_x' should be paired to a response value of *y* within that interval 95% of the time; it actually means that we *have sampled* random response values relating to that *x*-value through MCMC, and we *have observed* 95% of such values to be in that interval.
+The same applies to the prediction intervals: while they are typically obtained through a formulation derived from a normality assumption, here, MCMC sampling is used to obtain empirical distributions of response values *drawn* from the model's posterior. In each MCMC sampling iteration, a value for the mean response, `mu_pred`, is drawn (sampled) from the distributions of `alpha` and `beta`, after which a response value, `y_pred`, is drawn from a *t*-distribution that has the sampled value of `mu_pred` as its location (see the model code above). Therefore, a Bayesian 95% prediction interval (which is just an HPD interval of the inferred distribution of `y_pred`) does not just mean that we are 'confident' that a given value of *x* should be paired to a value of *y* within that interval 95% of the time; it actually means that we *have sampled* random response values relating to that *x*-value through MCMC, and we *have observed* 95% of such values to be in that interval.
 
 To wrap up this pontification on Bayesian regression, **I've written an R function which can be found in the file [`rob.regression.mcmc.R`](https://github.com/baezortega/bayes/blob/master/robust_regression/rob.regression.mcmc.R)**, and combines MCMC sampling on the model described above with some nicer plotting and reporting of the results. With this function, the analysis above becomes as easy as the following:
 
@@ -707,8 +707,8 @@ reg.noisy3 = rob.regression.mcmc(x=points.noisy$x, y=points.noisy$y,
     ## 
     ## SAMPLING FOR MODEL 'robust_regression' NOW (CHAIN 1).
     ## 
-    ## Gradient evaluation took 1.4e-05 seconds
-    ## 1000 transitions using 10 leapfrog steps per transition would take 0.14 seconds.
+    ## Gradient evaluation took 1.7e-05 seconds
+    ## 1000 transitions using 10 leapfrog steps per transition would take 0.17 seconds.
     ## Adjust your expectations accordingly!
     ## 
     ## 
@@ -725,63 +725,13 @@ reg.noisy3 = rob.regression.mcmc(x=points.noisy$x, y=points.noisy$y,
     ## Iteration: 1900 / 2000 [ 95%]  (Sampling)
     ## Iteration: 2000 / 2000 [100%]  (Sampling)
     ## 
-    ##  Elapsed Time: 0.067457 seconds (Warm-up)
-    ##                0.115738 seconds (Sampling)
-    ##                0.183195 seconds (Total)
+    ##  Elapsed Time: 0.051652 seconds (Warm-up)
+    ##                0.089271 seconds (Sampling)
+    ##                0.140923 seconds (Total)
     ## 
     ## 
     ## SAMPLING FOR MODEL 'robust_regression' NOW (CHAIN 2).
     ## 
-    ## Gradient evaluation took 1.6e-05 seconds
-    ## 1000 transitions using 10 leapfrog steps per transition would take 0.16 seconds.
-    ## Adjust your expectations accordingly!
-    ## 
-    ## 
-    ## Iteration:    1 / 2000 [  0%]  (Warmup)
-    ## Iteration:  200 / 2000 [ 10%]  (Warmup)
-    ## Iteration:  400 / 2000 [ 20%]  (Warmup)
-    ## Iteration:  501 / 2000 [ 25%]  (Sampling)
-    ## Iteration:  700 / 2000 [ 35%]  (Sampling)
-    ## Iteration:  900 / 2000 [ 45%]  (Sampling)
-    ## Iteration: 1100 / 2000 [ 55%]  (Sampling)
-    ## Iteration: 1300 / 2000 [ 65%]  (Sampling)
-    ## Iteration: 1500 / 2000 [ 75%]  (Sampling)
-    ## Iteration: 1700 / 2000 [ 85%]  (Sampling)
-    ## Iteration: 1900 / 2000 [ 95%]  (Sampling)
-    ## Iteration: 2000 / 2000 [100%]  (Sampling)
-    ## 
-    ##  Elapsed Time: 0.052722 seconds (Warm-up)
-    ##                0.098121 seconds (Sampling)
-    ##                0.150843 seconds (Total)
-    ## 
-    ## 
-    ## SAMPLING FOR MODEL 'robust_regression' NOW (CHAIN 3).
-    ## 
-    ## Gradient evaluation took 2.7e-05 seconds
-    ## 1000 transitions using 10 leapfrog steps per transition would take 0.27 seconds.
-    ## Adjust your expectations accordingly!
-    ## 
-    ## 
-    ## Iteration:    1 / 2000 [  0%]  (Warmup)
-    ## Iteration:  200 / 2000 [ 10%]  (Warmup)
-    ## Iteration:  400 / 2000 [ 20%]  (Warmup)
-    ## Iteration:  501 / 2000 [ 25%]  (Sampling)
-    ## Iteration:  700 / 2000 [ 35%]  (Sampling)
-    ## Iteration:  900 / 2000 [ 45%]  (Sampling)
-    ## Iteration: 1100 / 2000 [ 55%]  (Sampling)
-    ## Iteration: 1300 / 2000 [ 65%]  (Sampling)
-    ## Iteration: 1500 / 2000 [ 75%]  (Sampling)
-    ## Iteration: 1700 / 2000 [ 85%]  (Sampling)
-    ## Iteration: 1900 / 2000 [ 95%]  (Sampling)
-    ## Iteration: 2000 / 2000 [100%]  (Sampling)
-    ## 
-    ##  Elapsed Time: 0.053103 seconds (Warm-up)
-    ##                0.104592 seconds (Sampling)
-    ##                0.157695 seconds (Total)
-    ## 
-    ## 
-    ## SAMPLING FOR MODEL 'robust_regression' NOW (CHAIN 4).
-    ## 
     ## Gradient evaluation took 1.4e-05 seconds
     ## 1000 transitions using 10 leapfrog steps per transition would take 0.14 seconds.
     ## Adjust your expectations accordingly!
@@ -800,9 +750,59 @@ reg.noisy3 = rob.regression.mcmc(x=points.noisy$x, y=points.noisy$y,
     ## Iteration: 1900 / 2000 [ 95%]  (Sampling)
     ## Iteration: 2000 / 2000 [100%]  (Sampling)
     ## 
-    ##  Elapsed Time: 0.049137 seconds (Warm-up)
-    ##                0.092283 seconds (Sampling)
-    ##                0.14142 seconds (Total)
+    ##  Elapsed Time: 0.047364 seconds (Warm-up)
+    ##                0.090606 seconds (Sampling)
+    ##                0.13797 seconds (Total)
+    ## 
+    ## 
+    ## SAMPLING FOR MODEL 'robust_regression' NOW (CHAIN 3).
+    ## 
+    ## Gradient evaluation took 1.5e-05 seconds
+    ## 1000 transitions using 10 leapfrog steps per transition would take 0.15 seconds.
+    ## Adjust your expectations accordingly!
+    ## 
+    ## 
+    ## Iteration:    1 / 2000 [  0%]  (Warmup)
+    ## Iteration:  200 / 2000 [ 10%]  (Warmup)
+    ## Iteration:  400 / 2000 [ 20%]  (Warmup)
+    ## Iteration:  501 / 2000 [ 25%]  (Sampling)
+    ## Iteration:  700 / 2000 [ 35%]  (Sampling)
+    ## Iteration:  900 / 2000 [ 45%]  (Sampling)
+    ## Iteration: 1100 / 2000 [ 55%]  (Sampling)
+    ## Iteration: 1300 / 2000 [ 65%]  (Sampling)
+    ## Iteration: 1500 / 2000 [ 75%]  (Sampling)
+    ## Iteration: 1700 / 2000 [ 85%]  (Sampling)
+    ## Iteration: 1900 / 2000 [ 95%]  (Sampling)
+    ## Iteration: 2000 / 2000 [100%]  (Sampling)
+    ## 
+    ##  Elapsed Time: 0.051415 seconds (Warm-up)
+    ##                0.101799 seconds (Sampling)
+    ##                0.153214 seconds (Total)
+    ## 
+    ## 
+    ## SAMPLING FOR MODEL 'robust_regression' NOW (CHAIN 4).
+    ## 
+    ## Gradient evaluation took 1.7e-05 seconds
+    ## 1000 transitions using 10 leapfrog steps per transition would take 0.17 seconds.
+    ## Adjust your expectations accordingly!
+    ## 
+    ## 
+    ## Iteration:    1 / 2000 [  0%]  (Warmup)
+    ## Iteration:  200 / 2000 [ 10%]  (Warmup)
+    ## Iteration:  400 / 2000 [ 20%]  (Warmup)
+    ## Iteration:  501 / 2000 [ 25%]  (Sampling)
+    ## Iteration:  700 / 2000 [ 35%]  (Sampling)
+    ## Iteration:  900 / 2000 [ 45%]  (Sampling)
+    ## Iteration: 1100 / 2000 [ 55%]  (Sampling)
+    ## Iteration: 1300 / 2000 [ 65%]  (Sampling)
+    ## Iteration: 1500 / 2000 [ 75%]  (Sampling)
+    ## Iteration: 1700 / 2000 [ 85%]  (Sampling)
+    ## Iteration: 1900 / 2000 [ 95%]  (Sampling)
+    ## Iteration: 2000 / 2000 [100%]  (Sampling)
+    ## 
+    ##  Elapsed Time: 0.049501 seconds (Warm-up)
+    ##                0.090923 seconds (Sampling)
+    ##                0.140424 seconds (Total)
 
 ![]({{ site.baseurl }}/images/robust_regression_files/figure-markdown_github/unnamed-chunk-19-1.png)
 

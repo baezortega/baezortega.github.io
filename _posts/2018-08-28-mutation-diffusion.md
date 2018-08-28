@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Simulating mutation diffusion
+title: Simulating mutation diffusion through random drift
 author: Adrian Baez-Ortega
 date: 2018/08/28
 ---
@@ -44,7 +44,7 @@ for (j in ncol(Fs):1) {
 legend("right", lwd=2, col=cols, legend=paste("w =", Ws), bty="n")
 ```
 
-<img src="mutation-diffusion_files/figure-markdown_github/unnamed-chunk-1-1.png" style="display: block; margin: auto;" />
+![]({{ site.baseurl }}/images/mutation-diffusion_files/figure-markdown_github/unnamed-chunk-1-1.png)
 
 However elegant, this model would hardly work for a human population, because of complications arising from humans' propensity to mate with each other. Sexual reproduction involves genetic recombination, which yields non-deterministic offspring genotypes. If, in a diploid species, only one of the parents carries the relevant mutation in one copy of their genome, Mendelian genetics tells us that the probability that the mutation is passed to the offsprint is <sup>1</sup>/<sub>2</sub>. In addition, the frequency of an allele in a particular generation is not exactly determined by the frequency in the previous generation, as the genotypes of the offspring will depend on the particular mating between parents, which most models assume to be random (that is, the alleles in the offspring are randomly sampled from the pool of parental alleles). This makes it possible for allele frequencies to fluctuate in a random fashion, even to the extent of fixation or loss of mutations, in the absence of selection, a phenomenon known as [genetic drift](https://en.wikipedia.org/wiki/Genetic_drift).
 
@@ -63,7 +63,7 @@ barplot(dbinom(x=0:25, size=25, prob=0.63),
         xlab="x (number of wins)", ylab="P(X = x)", main="X ~ Binomial(25, 0.63)")
 ```
 
-<img src="mutation-diffusion_files/figure-markdown_github/unnamed-chunk-2-1.png" style="display: block; margin: auto;" />
+![]({{ site.baseurl }}/images/mutation-diffusion_files/figure-markdown_github/unnamed-chunk-2-1.png)
 
 Moving permanently away from baseball and back to genetics, the probability of having *k* copies of a given allele (let's name it *A*) in the offspring, given that there are *i* copies of the allele in the parents, can be seen (if we assume random mating) as the outcome of a process where 2*N* child alleles are randomly sampled from the pool of 2*N* parental alleles. As this sampling is completely random, the probability of any sampled allele being allele *A* (i.e. the 'success' probability) is equal to the frequency of said allele in the parental pool: *f* = <sup>*i*</sup>/<sub>2*N*</sub>. The binomial distribution defines the probability of each value of the number of successes, *k* (0 ≤ *k* ≤ 2*N*), as the product of the probability of obtaining a combination of 2*N* alleles featuring *k* copies of *A*, and the total number of possible such combinations that can be obtained from the pool of 2*N* parental alleles.
 
@@ -240,7 +240,7 @@ legend("topright", legend="1 / (2N)",
        pch=16, bty="n", cex=0.9, inset=c(0.02, 0))
 ```
 
-<img src="mutation-diffusion_files/figure-markdown_github/unnamed-chunk-6-1.png" style="display: block; margin: auto;" />
+![]({{ site.baseurl }}/images/mutation-diffusion_files/figure-markdown_github/unnamed-chunk-6-1.png)
 
 The fraction of successful mutations rapidly converge towards the <sup>1</sup>/<sub>2*N*</sub> prediction by Kimura and Ohta (indicated by the black dots), which refers to the case of allele fixation (*f*<sub>T</sub> = 1). Thus, the difference between the observed and predicted fractions can be interpreted as composed of mutations that, although considered 'successful' according to our target allele frequency, would eventually become lost before reaching fixation. Naturally, this difference is larger for smaller values of *N* and *f*<sub>T</sub>.
 
@@ -259,7 +259,7 @@ for (i in seq(index)) {
 }
 ```
 
-<img src="mutation-diffusion_files/figure-markdown_github/unnamed-chunk-7-1.png" style="display: block; margin: auto;" />
+![]({{ site.baseurl }}/images/mutation-diffusion_files/figure-markdown_github/unnamed-chunk-7-1.png)
 
 Although the distributions appear to be similar at first, the difference lies in the scaling of the *x*-axis; by fixing the scale, we see something quite different.
 
@@ -277,7 +277,7 @@ for (i in seq(index)) {
 }
 ```
 
-<img src="mutation-diffusion_files/figure-markdown_github/unnamed-chunk-8-1.png" style="display: block; margin: auto;" />
+![]({{ site.baseurl }}/images/mutation-diffusion_files/figure-markdown_github/unnamed-chunk-8-1.png)
 
 The distribution shifts towards higher values, and acquires much larger spreads, with increasing population size. This scaling up is closely proportional to the increase in *N*, which is a nice example of the aforementioned property that, for a fixed *f*<sub>T</sub>, a fold increase in *N* entails the same fold increase in the required number of allele copies.
 
@@ -326,7 +326,7 @@ plot3d(x=g.diff.long[,1],
        main=bquote(italic("f")["T"] ~ "=" ~ 0.01))
 ```
 
-<img src="mutation-diffusion_files/figure-markdown_github/unnamed-chunk-9-1.png" style="display: block; margin: auto;" />
+![]({{ site.baseurl }}/images/mutation-diffusion_files/figure-markdown_github/unnamed-chunk-9-1.png)
 
 Each of the histograms we saw before was a slice of this two-dimensional probability distribution along the axis labelled 'Eff. population size', since each histogram was using a different value of *N*. Indeed, the slice showing the shape of the distribution for *N* = 10<sup>5</sup> can be seen on the nearer end of the plot (lower-left corner). This plot makes it easier to see how the size of the population increases the uncertainty of the mutations' diffusion time, as a small populations size curtails the range of possible trajectories that a mutation can take before reaching the target frequency, especially for low *f*<sub>T</sub> values (note that *f*<sub>T</sub> = 0.01 corresponds to just 20 allele copies for *N* = 1000).
 
@@ -343,7 +343,7 @@ plot3d(x=g.diff.long[,1],
        main=bquote(italic("f")["T"] ~ "=" ~ 0.05))
 ```
 
-<img src="mutation-diffusion_files/figure-markdown_github/unnamed-chunk-10-1.png" style="display: block; margin: auto;" />
+![]({{ site.baseurl }}/images/mutation-diffusion_files/figure-markdown_github/unnamed-chunk-10-1.png)
 
 As before, the shape of the distribution hasn't changed, but the scale has increased (see the 'Generations' axis). Just as we did for the 1D histograms, we can keep the scale fixed to see how the distribution expands as *f*<sub>T</sub> increases. We can even go further and consider *f*<sub>T</sub> as an extra dimension of our probability distribution — and as we have already used the three dimensions of space in our 3D plots, the only dimension left is *time*. In other words, we can sit back and watch the probability distribution of the diffusion time evolve and spread 'in real time' as we increase *f*<sub>T</sub>.
 
@@ -368,7 +368,7 @@ plot3d(x=g.loss.long[,1],
        main=bquote("Time until mutation loss (" * italic("f")["T"] ~ "=" ~ 0.05 * ")"))
 ```
 
-<img src="mutation-diffusion_files/figure-markdown_github/unnamed-chunk-11-1.png" style="display: block; margin: auto;" />
+![]({{ site.baseurl }}/images/mutation-diffusion_files/figure-markdown_github/unnamed-chunk-11-1.png)
 
 The 'wall-of-fire' plot above confirms Kimura and Ohta's predictions (at least for simulated populations). Nonetheless, the red carpet along the bottom of the plot provides a very interesting observation: mutations can also be lost by random drift after huge amounts of time. What the red carpet represents are mutations whose allele frequency wandered for a long time (sometimes over *15,000 generations*) between zero and *f*<sub>T</sub> (which in the example above is 0.05), before finally disappearing from the population. It is mainly because of these late-losers that the simulation slows down so precipitously as *f*<sub>T</sub> increases.
 

@@ -198,7 +198,7 @@ for (i in 1:M) {
 }
 ```
 
-For simplicity, the code above is missing the lines where results are recorded in the `mut.diffusion` object, as its aim is simply to demonstrate how sampling and updating of the allele frequency is performed, and how mutation loss is handled. The complete code, including the pieces seen above together plus output storage and plotting, can be found in the file [**`mutation_diffusion.R`**](https://github.com/baezortega/misc/mutation_diffusion.R).
+For simplicity, the code above is missing the lines where results are recorded in the `mut.diffusion` object, as its aim is simply to demonstrate how sampling and updating of the allele frequency is performed, and how mutation loss is handled. The complete code, including the pieces seen above together plus output storage and plotting, can be found in the file [**`mutation_diffusion.R`**](https://github.com/baezortega/misc/blob/master/mutation_diffusion.R).
 
 It is important to note that, although I chose R out of convenience in this toy experiment, any serious simulation would benefit from the choice of a more efficient language and implementation. Moreover, as the simulations are independent from each other, this problem is extremely amenable to parallel computing.
 
@@ -208,7 +208,7 @@ It is evident that the time consumed by the simulations increases with the produ
 
 Since our simulations won't finish until *M* = 1000 successful mutation diffusions are recorded, they will be forced to witness many, *many* unsuccessful mutations in the meantime. As the fraction of mutation losses increases with *N*, this contributes to an even greater inflation of the time consumed by the simulations as *N* and *f*<sub>t</sub> increase. For instance, for *N* = 10<sup>5</sup>, only around one in every 200,000 simulated mutations will be successful!
 
-Indeed, if you run the code in [`mutation_diffusion.R`](https://github.com/baezortega/misc/mutation_diffusion.R), you will very soon notice an exponential increase in the run time per 1000 simulations as the parameter values increase. I decided to stop after some 30 hours of allele crunching, having reached only *f*<sub>t</sub> = 0.05; by then the run time was so inflated that it would have taken perhaps two more days to reach *f*<sub>t</sub> = 0.09. As I said before, this problem can be mitigated by writing a proper parallel implementation in a faster language, but that is very much out of the scope of this post.
+Indeed, if you run the code in [`mutation_diffusion.R`](https://github.com/baezortega/misc/blob/master/mutation_diffusion.R), you will very soon notice an exponential increase in the run time per 1000 simulations as the parameter values increase. I decided to stop after some 30 hours of allele crunching, having reached only *f*<sub>t</sub> = 0.05; by then the run time was so inflated that it would have taken perhaps two more days to reach *f*<sub>t</sub> = 0.09. As I said before, this problem can be mitigated by writing a proper parallel implementation in a faster language, but that is very much out of the scope of this post.
 
 In relation to Kimura and Ohta's conclusions, the first thing that we can do with the results in `mut.diffusion` is to see whether a similar proportion of successful mutations holds for our simulated mutations.
 

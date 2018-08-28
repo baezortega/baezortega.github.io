@@ -90,10 +90,10 @@ Just like with Ulam's solitaire (and more-relevant nuclear physics questions whi
 The structure of the simulation will be as follows: we first define a series of target allele frequencies, **F<sub>t</sub>**, a series of (effective) population sizes, **N**, and a fixed number of repetitions (successful mutations) per simulation setting, *M*, where each setting involves a specific combination of *f*<sub>t</sub> ∈ **F<sub>t</sub>** and *N* ∈ **N**.
 
 <center>
-<b>F<sub>t</sub></b> = \[ 0.001, 0.002, ..., 0.01, 0.02, ..., 0.09 \]
+<b>F<sub>t</sub></b> = [ 0.001, 0.002, ..., 0.01, 0.02, ..., 0.09 ]
 </center>
 <center>
-<b>N</b> = \[ 1000, 2000, ..., 99000, 100000 \]
+<b>N</b> = [ 1000, 2000, ..., 99000, 100000 ]
 </center>
 <center>
 <i>M</i> = 1000

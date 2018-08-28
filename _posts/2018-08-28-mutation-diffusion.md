@@ -271,7 +271,7 @@ powers = 3:5
 for (i in seq(index)) {
     hist(mut.diffusion$`ft=0.01`$g.diff[, index[i]],
          breaks=100, freq=F, col="dodgerblue4", border=NA,
-         xlab="", main=bquote(italic("f")["T"] ~ "=" ~ 0.01 * "," 
+         xlab="", main=bquote(italic("f")["t"] ~ "=" ~ 0.01 * "," 
                               ~ italic("N") ~ "=" ~ 10 ^ .(powers[i])),
          xlim=c(0, 9000))
 }
@@ -363,7 +363,7 @@ g.loss.long = cbind("N"=rep(Ns, each=M),
 # Plot distribution of time to loss
 plot3d(x=g.loss.long[,1],
        y=g.loss.long[,2],
-       main=bquote("Time until mutation loss (" * italic("f")["T"] ~ "=" ~ 0.05 * ")"))
+       main=bquote("Time until mutation loss (" * italic("f")["t"] ~ "=" ~ 0.05 * ")"))
 ```
 
 ![]({{ site.baseurl }}/images/mutation_diffusion_files/figure-markdown_github/unnamed-chunk-11-1.png)

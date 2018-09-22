@@ -81,5 +81,3 @@ ls -lh toomanyvariants* | awk '{print $5"\t"$9}'
 
 The four output files should be quite easy to read from R using `read.table` (with argument `header=TRUE`). And the best thing is that the data are already decomposed into separate tables, so we can forget about the VCF format from here on.
 
-
----

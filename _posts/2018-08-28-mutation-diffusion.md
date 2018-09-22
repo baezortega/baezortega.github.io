@@ -355,7 +355,7 @@ This '4D' plot is even better at highlighting the constraint imposed by small va
 
 Another very noticeable thing is the strange backward jump that seems to occur at *f*<sub>t</sub> = 0.09. This appears because the distribution for *f*<sub>t</sub> = 0.08 has a larger spread than it should, based on the pattern followed by all other values, and so the distribution seems to 'fall back' to its proper spread at *f*<sub>t</sub> = 0.09. There is, however, no obvious reason why this should happen, as all simulations were conducted in the same way and the spread of the distribution follows quite a deterministic pattern overall.
 
-After seeing the aspect of successful diffusions, let's take a look at those mutations who didn't survive. As you will remember, Kimura and Ohta estimated that the great majority of mutations (fraction 1 – 1/(2*N*)) are lost from the population in about 1.6 log(2*N*) generations; this corresponds to ~12 generations for *N* = 1000, and just ~20 generations for *N* = 100,000. Therefore, we expect practically all the lost mutations to follow a very narrow distribution — and we are not to be disappointed.
+After seeing the aspect of successful diffusions, let's take a look at those mutations that didn't survive. As you will remember, Kimura and Ohta estimated that the great majority of mutations (fraction 1 – 1/(2*N*)) are lost from the population in about 1.6 log(2*N*) generations; this corresponds to ~12 generations for *N* = 1000, and just ~20 generations for *N* = 100,000. Therefore, we expect practically all the lost mutations to follow a very narrow distribution — and we are not to be disappointed.
 
 ``` r
 # Convert the values in `g.loss` to the 'long format'

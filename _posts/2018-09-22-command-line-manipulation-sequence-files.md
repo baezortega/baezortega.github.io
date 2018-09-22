@@ -63,7 +63,7 @@ For more info, run `bamtofastq -h`.
 This involves simply selecting the first two lines of every four-line record in the FASTQ file, and replacing the `@` at the beginning of the read identifier with `>`. Note that, for this to work, each sequence must be on a single line (without line breaks), that is, every record in the FASTQ must be composed of exactly four lines.
 
 ``` sh
-awk '{ if ('NR%4==1' || 'NR%4==2'){ gsub("@",">",$1); print } }' INPUT.fastq > OUTPUT.fasta
+awk '{ if ('NR%4==1' || 'NR%4==2'){ gsub("@",">",$1); print }}' INPUT.fastq > OUTPUT.fasta
 ```
 
 ### 5. Sorting FASTQ files by read identifier

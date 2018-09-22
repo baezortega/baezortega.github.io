@@ -59,7 +59,7 @@ The Stan code for the model is reproduced below, and can be found in the file [`
 
     transformed parameters {
         vector[N] mu = alpha + beta * x;            // mean response
-        vector[M] mu_cred = alpha + beta * x_cred;  // mean response for credible interval estimation
+        vector[M] mu_cred = alpha + beta * x_cred;  // mean response for cred. interval estimation
         vector[P] mu_pred = alpha + beta * x_pred;  // mean response for prediction
     }
 

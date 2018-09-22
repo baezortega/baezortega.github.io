@@ -6,11 +6,11 @@ date: 2018/09/22
 ---
 
 
-Here I present some command-line approaches, hoarded over the years, to manipulating and converting between different popular sequence data files formats, namely [BAM/SAM](https://en.wikipedia.org/wiki/SAM_(file_format\)), [FASTQ](https://en.wikipedia.org/wiki/FASTQ_format) and [FASTA](https://en.wikipedia.org/wiki/FASTA_format). While they are by no means the only approaches available for these tasks, they are perhaps the most simple.
+Here I present some command-line approaches, hoarded over the years, for manipulating and converting between different popular sequence data files formats, namely [BAM/SAM](https://en.wikipedia.org/wiki/SAM_(file_format\)), [FASTQ](https://en.wikipedia.org/wiki/FASTQ_format) and [FASTA](https://en.wikipedia.org/wiki/FASTA_format). While they are by no means the only methods available for these tasks, they are perhaps the most simple.
 
 ### 1. Converting BAM to SAM
 
-BAM is just a binary compressed version of the SAM format, and the easier way to convert between them is via the [SAMtools](http://www.htslib.org/) software suite. The `-h` option includes the BAM file header in the output SAM, which is often necessary.
+BAM is just a binary compressed version of the SAM format, and the easier way to convert between them is via `samtools view` command from the [SAMtools](http://www.htslib.org/) software suite. The `-h` option allows including the BAM file header in the output SAM, which is often necessary.
 
 ``` sh
 samtools view -h INPUT.bam > OUTPUT.sam
@@ -18,7 +18,7 @@ samtools view -h INPUT.bam > OUTPUT.sam
 
 ### 2. Converting SAM to BAM
 
-Here, the `-bS` options indicates that the input is SAM and the output is BAM.
+Here, the `-bS` options indicate that the input is SAM and the output is BAM.
 
 ``` sh
 samtools view -bS INPUT.sam > OUTPUT.bam
@@ -26,15 +26,15 @@ samtools view -bS INPUT.sam > OUTPUT.bam
 
 ### 3. Converting SAM/BAM to FASTQ
 
-Converting from SAM to FASTQ (both of which are text-based formats) simply implies selecting specific columns of the SAM file and arranging them into lines of the FASTQ file. The initial `grep` command discards the SAM file header, which cannot go into the FASTQ file.
+Converting from SAM to FASTQ (both of which are text-based formats) may be as simple as selecting specific columns of the SAM file and arranging them into lines of the FASTQ file. The initial `grep` command discards the SAM file header, which cannot go into the FASTQ file.
 
 ``` sh
 grep -v ^@ INPUT.sam | awk '{print "@"$1"\n"$10"\n+\n"$11}' > OUTPUT.fastq
 ```
 
-Obviously, the SAM file itself can be produced from a BAM file using the `samtools` command above. There is, however, a problem with this `grep | awk` approach: each record in a SAM/BAM file represent a read *alignment* to a reference sequence, and it is possible for a given sequence read to have more than one alignment. In contrast, each record in a FASTQ should represent a *unique read*, which implies that we should only consider one alignment (the primary alignment) for each read in the SAM/BAM file. 
+Obviously, the SAM file itself can be produced from a BAM file using the `samtools` command above. There is, however, a problem with this `grep|awk` approach: each record in a SAM/BAM file represent a read *alignment* to a reference sequence, and it is possible for a given sequence read to have more than one alignment. In contrast, each record in a FASTQ should represent a *unique read*, which implies that we should only consider one alignment (the primary alignment) for each read in the SAM/BAM file. 
 
-The easiest way (to my knowlege) of generating a FASTQ from a BAM file, such that reads with multiple alignments are written to the FASTQ file only once, is using the `bamtofastq` command from the [biobambam2](https://www.sanger.ac.uk/science/tools/biobambam) software suite, which automatically ignores secondary alignments.
+The easiest way (to my knowledge) of generating a FASTQ from a BAM file, such that reads with multiple alignments are written to the FASTQ file only once, is using the `bamtofastq` command from the [biobambam2](https://www.sanger.ac.uk/science/tools/biobambam) software suite, which automatically ignores secondary alignments.
 
 By default, `bamtofastq` generates two FASTQ files, containing the forward and reverse reads in each read pair, respectively. The output file names are indicated via the `F` and `F2` arguments. Orphan forward and reverse reads without a paired mate are also output to two files, indicated by `O` and `O2`. For simplicity, the same file names can be used for `F` and `O`, and for `F2` and `O2` (meaning that we don't care whether the reads have a mate, but only whether they are forward or reverse).
 

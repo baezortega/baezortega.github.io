@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Command-line manipulation of sequence read files
+title: Command-line manipulation of sequence files
 author: Adrian Baez-Ortega
 date: 2018/09/22
 ---
@@ -39,13 +39,15 @@ The easiest way (to my knowlege) of generating a FASTQ from a BAM file, such tha
 By default, `bamtofastq` generates two FASTQ files, containing the forward and reverse reads in each read pair, respectively. The output file names are indicated via the `F` and `F2` arguments. Orphan forward and reverse reads without a paired mate are also output to two files, indicated by `O` and `O2`. For simplicity, the same file names can be used for `F` and `O`, and for `F2` and `O2` (meaning that we don't care whether the reads have a mate, but only whether they are forward or reverse).
 
 ``` sh
-bamtofastq filename=INPUT.bam F=OUTPUT_1.fastq O=OUTPUT_1.fastq F2=OUTPUT_2.fastq O2=OUTPUT_2.fastq
+bamtofastq filename=INPUT.bam F=OUTPUT_1.fastq O=OUTPUT_1.fastq \
+F2=OUTPUT_2.fastq O2=OUTPUT_2.fastq
 ```
 
 Additionally, the `inputformat` argument allows using SAM input files, while `gz=1` can be used to generate compressed FASTQ files (`fq.gz` extension).
 
 ``` sh
-bamtofastq inputformat=sam gz=1 filename=INPUT.sam F=OUTPUT_1.fq.gz O=OUTPUT_1.fq.gz F2=OUTPUT_2.fq.gz O2=OUTPUT_2.fq.gz
+bamtofastq inputformat=sam gz=1 filename=INPUT.sam F=OUTPUT_1.fq.gz O=OUTPUT_1.fq.gz \
+F2=OUTPUT_2.fq.gz O2=OUTPUT_2.fq.gz
 ```
 
 Finally, if what we want is all the reads to be in a same FASTQ file, we can simply omit all the output name arguments and redirect the output.

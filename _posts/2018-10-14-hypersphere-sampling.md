@@ -157,7 +157,7 @@ accept.rate * 4
 
     ## [1] 3.127443
 
-It seems that we should have sampled longer to get a more decent estimate of 𝜋!
+It seems that we should have sampled longer to get a decent estimate of 𝜋!
 
 We have seen that the problem with the acceptance rate derives from the fact that we are sampling from an unsuitable distribution. Let us now turn to a more clever approach, where coordinates are sampled not from a uniform distribution between –1 and 1, but from a standard Gaussian (or normal) distribution. We will see that, by using a simple transformation, a vector of *D* Gaussian numbers can be converted into a random point sampled from the *D*-dimensional unit hypersphere, or on its surface. This method achieves perfect sampling, meaning that there are no samples are rejected and the acceptance rate is 1.
 

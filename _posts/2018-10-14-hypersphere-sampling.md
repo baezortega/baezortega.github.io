@@ -131,7 +131,7 @@ As you have probably noticed already, the problem with this naive sampling metho
 <td>Hypersphere</td>
 <td>Hypercube</td>
 <td><em>V</em><sub>S</sub> = 𝜋<sup> (<i>D</i> / 2)</sup> <em>r<sup> D</sup></em> / Γ((<em>D</em> / 2) + 1)</td>
-<td><em>V</em><sub>C</sub> = 2<em><sup>D</sup></em></td>
+<td><em>V</em><sub>C</sub> = 2<em><sup> D</sup></em></td>
 <td><em>V</em><sub>S</sub> / <em>V</em><sub>C </sub> ≪ 1</td>
 </tr>
 </tbody>

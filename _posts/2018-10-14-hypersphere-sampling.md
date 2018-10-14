@@ -6,8 +6,6 @@ date: 2018/10/14
 ---
 
 
-**\[NB. This post is largely based on the contents of Werner Krauth's book [*Statistical Mechanics: Algorithms and Computations*](https://global.oup.com/academic/product/statistical-mechanics-algorithms-and-computations-9780198515364) (Oxford University Press), and its companion [online course](https://www.coursera.org/learn/statistical-mechanics).\]**
-
 This is the first of a short series of posts where I will present some of the most beautiful and surprising concepts from the field of statistical physics, all of which are featured in Werner Krauth's marvelous book [*Statistical Mechanics: Algorithms and Computations*](https://global.oup.com/academic/product/statistical-mechanics-algorithms-and-computations-9780198515364) (Oxford University Press). (Incidentally, I recommend taking a look at the related *free* [online course](https://www.coursera.org/learn/statistical-mechanics) available on Coursera, which is every bit as delightful as Krauth's book, and more accessible to those without a physics background.)
 
 The problem in focus today is deceptively simple: how to efficiently sample random points inside a sphere in *D* dimensions. We will see that the more intuitive, naive sampling strategy is bound to become unbearably inefficient as the number of dimensions, *D*, increases; and, in our way to a much better sampling algorithm, we shall be witness to some amazingly clever and powerful mathematical concepts, including sample transformations and isotropic compound probability distributions.
@@ -85,12 +83,14 @@ As you have probably noticed already, the problem with this naive sampling metho
 </colgroup>
 <thead>
 <tr class="header">
+<strong>
 <th align="center">Dimensions</th>
 <th>Sphere analogue</th>
 <th>Cube analogue</th>
 <th>Volume of unit sphere</th>
 <th>Volume of cube of side 2</th>
 <th>Acceptance rate</th>
+</strong>
 </tr>
 </thead>
 <tbody>
@@ -130,7 +130,7 @@ As you have probably noticed already, the problem with this naive sampling metho
 <td align="center"><strong>Large <em>D</em></strong></td>
 <td>Hypersphere</td>
 <td>Hypercube</td>
-<td><em>V</em><sub>S</sub> = 𝜋<sup><i>D</i> / 2</sup> <em>r<sup>D</sup></em> / Γ((<em>D</em> / 2) + 1)</td>
+<td><em>V</em><sub>S</sub> = 𝜋<sup> (<i>D</i> / 2)</sup> <em>r<sup> D</sup></em> / Γ((<em>D</em> / 2) + 1)</td>
 <td><em>V</em><sub>C</sub> = 2<em><sup>D</sup></em></td>
 <td><em>V</em><sub>S</sub> / <em>V</em><sub>C </sub> ≪ 1</td>
 </tr>
@@ -263,3 +263,5 @@ plot3D::points3D(x = points.sphere[,1],
 This perfect sampling algorithm, if formally very simple, provides an example of the importance of understanding the topology of the space in which sampling is to be done, and of the elegant and powerful mathematical tricks, such as sample transformation, that are ubiquitious across all of statistical physics.
 
 Finally, it is very important to realise that, although I have presented on this sampling algorithm mainly because of the mathematical ingenuity and beauty that it encapsulates, hypersphere sampling is a technique of enormous importance in statistical mechanics and particle physics. To mention one example, the distribution of velocities of *N* classical particles in a gas with a fixed [kinetic energy](https://en.wikipedia.org/wiki/Kinetic_energy) can be sampled as random points on the surface of a hypersphere in 3*N* dimensions. This is because the kinetic energy, which is fixed, is proportional to the sum of the squared velocities; and so the particle velocities that are sampled (each of which has *x*, *y* and *z* components) must satisfy that the sum of their squares is proportional to the kinetic energy, just as all the points on the surface of a sphere have coordinates whose sum of squares is, by definition, equal to the square of the sphere radius. Interestingly, the distribution of points in a hypersphere is also conceptually connected with [J. J. Thomson](https://en.wikipedia.org/wiki/J._J._Thomson)'s landmark 1904 [atomic model](https://en.wikipedia.org/wiki/Plum_pudding_model), which described the atom as a positively charged sphere with negative-charged electrons embedded in it. More generally, the problem of carefully defining the space to sample from is of foremost importance in [Markov chain Monte Carlo](https://en.wikipedia.org/wiki/Markov_chain_Monte_Carlo) sampling algorithms, being the motivation of some of the most advanced techniques of the field, such as Hamiltonian Monte Carlo and Adiabatic Monte Carlo.
+
+**\[NB. This post is largely based on the contents of Werner Krauth's book [*Statistical Mechanics: Algorithms and Computations*](https://global.oup.com/academic/product/statistical-mechanics-algorithms-and-computations-9780198515364) (Oxford University Press), and its companion [online course](https://www.coursera.org/learn/statistical-mechanics).\]**

@@ -393,6 +393,7 @@ div.language-r.highlighter-rouge span.s2 {
 table {
     border-collapse: collapse;
     width: 100%;
+    vertical-align: center;
 }
 td, th {
     border: 1px solid #ddd;
@@ -403,8 +404,8 @@ tr:hover {background-color: #ddd;}
 th {
     padding-top: 12px;
     padding-bottom: 12px;
-    text-align: left;
-    background-color: #555;
+    text-align: center;
+    background-color: #777;
     color: white;
 }
 

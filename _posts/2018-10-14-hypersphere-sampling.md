@@ -16,7 +16,7 @@ Analogously, the *hypercube* is the general version of the cube in any dimension
 
 The reason why cubes are of interest here, is that they are instrumental in the simplest and most intuitive way of sampling random points inside a sphere. Let us consider, for example, the sphere in *two dimensions* — that is, the circle. The most obvious technique for sampling points inside a circle is to first sample random points (pairs of *x* and *y* coordinates) inside a *square* containing the circle, and then *accepting* each random point as valid only if it is indeed inside the circle (that is, if its distance to the centre is smaller than the circle radius).
 
-We can easily write a short algorithm for this naive sampling method, and plot the resulting points. We will plot any points lying outside the circle (rejected samples) in red, and any points inside the circle (accepted samples) in blue.
+We can easily write a short algorithm for this naive sampling method in R, and plot the resulting points. We will plot any points lying outside the circle (rejected samples) in red, and any points inside the circle (accepted samples) in blue.
 
 ``` r
 # Naive sampling of N random points (each a vector of coordinates 

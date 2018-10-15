@@ -270,6 +270,6 @@ Finally, it is very important to realise that, although I have chosen to present
 
 Interestingly, the distribution of points in a hypersphere is also connected with [J. J. Thomson](https://en.wikipedia.org/wiki/J._J._Thomson)'s landmark 1904 [atomic model](https://en.wikipedia.org/wiki/Plum_pudding_model), which described the atom as a positively charged sphere with negatively charged electrons embedded in it. More generally, the problem of carefully defining the sampling region is of foremost importance in [Markov chain Monte Carlo](https://en.wikipedia.org/wiki/Markov_chain_Monte_Carlo) sampling, being the motivation of some of the most advanced methods in the field, such as Hamiltonian Monte Carlo and Adiabatic Monte Carlo.
 
-\   
+­
 
 *NB. This post was largely inspired by the contents of Werner Krauth's book* [Statistical Mechanics: Algorithms and Computations](https://global.oup.com/academic/product/statistical-mechanics-algorithms-and-computations-9780198515364) *(Oxford University Press), and its companion [online course](https://www.coursera.org/learn/statistical-mechanics).*

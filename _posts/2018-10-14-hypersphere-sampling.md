@@ -135,7 +135,7 @@ As you might have already noticed, the problem with this sampling algorithm is t
 </tbody>
 </table>
 
-The acceptance rate already drops dramatically for *D* = 3, foreshadowing the method's fate in higher dimensions. For large values of *D*, this method is definitely too inefficient to be of any use, as nearly all of the proposed samples are rejected.
+The acceptance rate already drops dramatically for *D* = 3, foreshadowing the method's fate in higher dimensions. For large values of *D*, this method is simply too inefficient to be of any use, as nearly all of the proposed samples are rejected.
 
 As an interesting side note, notice that the number 𝜋 is involved in the acceptance rate; this implies that, as we sample and accept/reject points with this algorithm, we are inadvertently computing the value of 𝜋 to an increasing degree of accuracy. For example, we can approximate 𝜋 from the empirical acceptance rate of our previous sampling exercise on the circle.
 

@@ -68,7 +68,7 @@ This method can be applied to the sphere in any number of dimensions, as illustr
 
 ![]({{ site.baseurl }}/images/hypersphere-sampling_files/figure-markdown_github/sampling.png)
 
-As you might have already noticed, the problem with this sampling algorithm is that the region in which the points are sampled (the cube) and the region where they are accepted (the sphere) rapidly grow more distinct from each other as we go to higher dimensions. While for *D* = 1 the sampling is perfect (as both sphere and cube correspond to the same line segment), we already notice that the difference between the 3-dimensional cube and the sphere within is substantially larger than the difference between the 2-dimensional square and its circle. In general, the ratio of the volume of the sphere to that of the cube gives the algorithm's *acceptance rate* (the fraction of accepted samples) for *D* dimensions, as shown below.
+As you might have already noticed, the problem with this sampling algorithm is that the region in which the points are sampled (the cube) and the region where they are accepted (the sphere) rapidly grow more distinct from each other as we go to higher dimensions. While for *D* = 1 the sampling is perfectly efficient (as both sphere and cube correspond to the same line segment), we already notice that the difference between the 3-dimensional cube and the sphere within is substantially larger than the difference between the 2-dimensional square and its circle. In general, the ratio of the volume of the sphere to that of the cube gives the algorithm's *acceptance rate* (the fraction of accepted samples) for *D* dimensions, as shown below.
 
 <table style="width:100%;">
 <colgroup>
@@ -158,7 +158,7 @@ accept.rate * 4
 
 It seems that we need to sample quite a bit longer before arriving to an acceptable estimate of 𝜋!
 
-We have seen that the acceptance-rate problem derives from the fact that we are sampling from a distribution which does not exactly match the region we are interested in. Let us now turn to a different approach, where the coordinates are sampled not from a uniform distribution between –1 and 1, but from a standard Gaussian (or normal) distribution. We will see that, by applying a clever transformation, a vector of *D* Gaussian random numbers can be converted into a random point inside the *D*-dimensional unit hypersphere, or even on its surface. This method achieves perfect sampling, meaning that no samples need to be rejected. Hence, this algorithm will be free from the efficiency concerns of the previous one.
+We have seen that the acceptance-rate problem derives from the fact that we are sampling from a distribution which does not exactly match the region we are interested in. Let us now turn to a different approach, where the coordinates are sampled not from a uniform distribution between –1 and 1, but from a standard Gaussian (or normal) distribution. We will see that, by applying a clever transformation, a vector of *D* Gaussian random numbers can be converted into a random point inside the *D*-dimensional unit hypersphere, or even on its surface. This method achieves rejection-free sampling, meaning that no samples ever fall outside the sphere. Hence, this algorithm will be free from the efficiency concerns of the previous one.
 
 Let us begin by sampling points as vectors of *D* independent Gaussian coordinates. In two dimensions, we sample two coordinates, *x* and *y*, which gives the following distribution of samples.
 
@@ -174,7 +174,7 @@ plot(x = rnorm(n=1000),
 
 So far, this looks more like a cloud than a circle. The crucial detail here, however, is that the points in this cloud are uniformly distributed in *all directions*. This is because the combination of two Gaussian distributions gives an *isotropic* distribution in two dimensions. Isotropic is just a fancy Greek name for something that is uniform in all orientations; in other words, something whose aspect does not change when it is rotated. An orange is normally isotropic, while a banana never is.
 
-The Gaussian distribution has the *unique* property that the combination of *D* independent distributions generates an isotropic distribution in *D* dimensions. *This is the key insight* that enables perfect sampling in a sphere of any dimensionality.
+The Gaussian distribution has the *unique* property that the combination of *D* independent distributions generates an isotropic distribution in *D* dimensions. *This is the key insight* that enables rejection-free sampling in a sphere of any dimensionality.
 
 (The proof that the Gaussian distribution is isotropic is itself deeply elegant, but will not be shown here. Briefly, it involves some clever variable transformations on an integral over the Gaussian distribution, resulting in two independent integrals on the angular and radial variables. It then becomes evident that the integral over the angular variable spans all angles uniformly, which is the definition of isotropy.)
 
@@ -204,12 +204,12 @@ Fortunately, sampling from this distribution is easy: we only need to sample fro
 
 To assign the radii sampled from the distribution above to the points that we sampled from the isotropic Gaussian distribution, we need to divide the value of each coordinate by the point's original distance (given by the square root of the sum of its squared coordinates), and then multiply the coordinates again by the new radius. After this correction, the points will uniformly cover not just all angles, but also all distances between 0 and 1.
 
-Below is a function that ties all these ideas together into an algorithm for perfect sampling of points in a *D*-dimensional sphere.
+Below is a function that ties all these ideas together into an algorithm for rejection-free sampling of points in a *D*-dimensional sphere of radius *r*.
 
 ``` r
-# Perfect sampling of N random points (vectors of coordinates 
+# Rejection-free sampling of N random points (vectors of coordinates
 # [x_1, ..., x_D]) in/on a D-dimensional sphere of radius r
-perfect.hypersphere = function(N, D, r=1, surface=FALSE) {
+gaussian.hypersphere = function(N, D, r=1, surface=FALSE) {
     
     # Sample D vectors of N Gaussian coordinates
     set.seed(1)
@@ -240,7 +240,7 @@ Below are two examples of 1000 random points, *inside* and *on* the unit sphere,
 
 ``` r
 # Sample 1000 random points inside the unit sphere (D=3)
-points.sphere = perfect.hypersphere(N=1000, D=3)
+points.sphere = gaussian.hypersphere(N=1000, D=3)
 plot3D::points3D(x = points.sphere[, 1],
                  y = points.sphere[, 2],
                  z = points.sphere[, 3],
@@ -252,7 +252,7 @@ plot3D::points3D(x = points.sphere[, 1],
 
 ``` r
 # Sample 1000 random points on the surface of the unit sphere (D=3)
-points.sphere = perfect.hypersphere(N=1000, D=3, surface=TRUE)
+points.sphere = gaussian.hypersphere(N=1000, D=3, surface=TRUE)
 plot3D::points3D(x = points.sphere[, 1],
                  y = points.sphere[, 2],
                  z = points.sphere[, 3],
@@ -262,7 +262,7 @@ plot3D::points3D(x = points.sphere[, 1],
 
 ![]({{ site.baseurl }}/images/hypersphere-sampling_files/figure-markdown_github/unnamed-chunk-7-2.png)
 
-This perfect sampling algorithm, if formally quite simple, provides a powerful example of the importance of understanding the topology of the space in which sampling is to be done, and of the beauty and elegance which so often characterise the mathematical tools, such as variable and sample transformations, that are ubiquitous in statistical physics.
+This rejection-free sampling algorithm, if formally quite simple, provides a powerful example of the importance of understanding the topology of the space in which sampling is to be done, and of the beauty and elegance which so often characterise the mathematical tools, such as variable and sample transformations, that are ubiquitous in statistical physics.
 
 Finally, it must be noted that, although I have chosen to present this sampling approach mainly because of its mathematical ingenuity, hypersphere sampling is not only beautiful, but also of prime importance in statistical mechanics and other branches of physics. To mention one example, the velocities of *N* classical particles in a gas with constant kinetic energy are distributed as random points on the surface of a 3*N*-dimensional hypersphere. This is because the fixed kinetic energy is proportional to the sum of the squared velocities, and therefore any valid set of particle velocities (each with *x*, *y* and *z* components) must satisfy that the sum of their squares is proportional to the kinetic energy — just as any point on the surface of a sphere has coordinates whose sum-of-squares is, by definition, equal to the square of the sphere radius.
 

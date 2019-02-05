@@ -103,6 +103,7 @@ plot.orbits(orbit.pos, F1, t=0,
 ```
 
 <span style="display:block;text-align:center">
+</br>
 ![]({{ site.baseurl }}/images/kepler-orbits_files/figure-markdown_github/unnamed-chunk-4-1.png)
 </span>
 
@@ -135,9 +136,9 @@ next.orbit.pos = function(P, a, b, Cx, delta, F1, At) {
 }
 ```
 
-With this, we have implemented Kepler's second law. I have intentionally shunned the third law (which relates the orbital period with the orbit's semi-major axis) for two reasons. First, adjusting the periods of the planets according to this law would require knowing what the periods, which is not straightforward in this simulation. Because the motion here arises directly from the second law, and not from equations describing the speed and acceleration of the planets, we cannot predict their periods, but only discover them as the simulation progresses. (In fact, we *could* predict the periods by dividing the ellipse into triangles of area *A<sub>t</sub>* and counting the number of triangles, but this would be like running the simulation *before* running the simulation.)
+With this, we have implemented Kepler's second law. I have intentionally shunned the third law (which relates the orbital period with the orbit's semi-major axis) for two reasons. First, adjusting the periods of the planets according to this law would require knowing the periods first, which is not straightforward in this setting. Because the motions here arise directly from the second law, and not from equations describing the speed and acceleration of the planets, we cannot predict their periods, but only discover them as the simulation progresses. (In fact, we *could* predict the periods by dividing the ellipse into triangles of area *A<sub>t</sub>* and counting the number of triangles, but this would be like running the simulation *before* running the simulation.)
 
-Second, the third law states that the square of the orbital period is proportional to the cube of the semi-major axis; in other words, planets with larger orbits take much longer to complete them (for instance, Saturn has an orbital period of 29.5 years). However, if we think in terms of the second law, a larger orbit also implies that the movement needed to sweep a fixed area is much smaller (as the radius is longer), so by imposing the second law across all orbits, we are already slowing down the motion of the planets with larger orbits. So it's not clear to me whether Kepler's third law is a consequence of the second, or would need to be enforced independently — although I presume the latter.
+Second, the third law states that the square of the orbital period is proportional to the cube of the semi-major axis; in other words, planets with larger orbits take much longer to complete them (for instance, Saturn has an orbital period of 29.5 years). However, if we think in terms of the second law, a larger orbit also implies that the movement needed to sweep a fixed area is much smaller (as the radius is longer), so by imposing the second law across all orbits, we are already slowing down the motion of the planets with larger orbits. So it's not clear to me whether Kepler's third law could be interpreted as a consequence of the second, or would need to be enforced independently — although I presume the latter.
 
 The only thing left to do is actually running the simulation and plotting the motions of our toy Solar System. For each time-step in the simulation, the code below plots the current orbit positions to a PDF file, and moves each planet to its next position according to Kepler's second law. The full code is available in the script [**`kepler_orbits.R`**](https://github.com/baezortega/misc/blob/master/kepler_orbits.R).
 
@@ -168,6 +169,9 @@ for (i in 1:Nt) {
 dev.off()
 ```
 
-The resulting animation shows how the motions of the planets and the way they change as the move towards and away from the Sun. Although the explanation for these motions wouldn't arrive until Newton's time, Tycho did such superb work at recording these motions, and Kepler condensed their properties so nicely in his three laws, that we are able to reproduce them without any resort to the theory of gravitation. As I thought when I was reading Feynman's lecture, it's almost unbelievable how much information is contained in the phrase 'equal areas in equal times'.
+The resulting animation shows a quite convincing reproduction of the planetary motions, and the way they change as the move towards and away from the Sun (notice how the planets are 'slingshot' when they come close to the star). Although a mathematical description of the underlying forces would have to wait for Newton, Tycho recorded the motions of the planets so superbly, and Kepler condensed their properties so perfectly in his three laws, that today we are able to reproduce them without any resort to the theory of gravitation. As I thought when I was reading Feynman's text, it's almost unbelievable how much information is contained in the words 'equal areas in equal times'.
 
+<span style="display:block;text-align:center">
+</br>
 ![]({{ site.baseurl }}/images/kepler-orbits_files/figure-markdown_github/kepler.gif)
+</span>

@@ -20,9 +20,9 @@ You will probably remember Kepler's laws of planetary motion from your elementar
 > 2.  *A line segment joining a planet and the Sun sweeps out equal areas during equal intervals of time.*
 > 3.  *The square of the orbital period of a planet is directly proportional to the cube of the semi-major axis of its orbit.*
 
-The second of these laws, which is perhaps the most famous one, always strikes me for its simplicity. The fact that, as a planet orbits a star, the radius of its orbit sweeps out equal areas in equal times seems just too neat. As Newton would prove, this results from the manner in which the intensity of the gravitational field decreases with the square of the distance, and explains why planets move faster when they are closer to the star. So, while reading Feynman's description of Kepler's laws, I realised that it would be possible, and very interesting, to simulate an idealised Solar System entirely from the knowledge contained in these laws — in particular the first two — and a bit of trigonometry.
+The second of these laws, which is perhaps the most famous one, always strikes me for its simplicity. The fact that, as a planet orbits a star, the radius of its orbit sweeps out equal areas in equal times seems just too neat. As Newton would prove, this results from the manner in which the intensity of the gravitational field decreases with the square of the distance, and explains why planets move faster when they are closer to the star. So, as I read Feynman's description of Kepler's laws, I realised that it would be possible, and very interesting, to simulate an idealised Solar System entirely from the knowledge contained in these laws — in particular the first two — and a bit of trigonometry.
 
-It took surprisingly little time to work out the few tools required for this task. As I wanted to do most of the thinking myself, I avoided an exact formulation for the area of a radial section of an ellipse, and opted instead for a geometric approximation. Concretely, the area of the radial section of the ellipse that is swept by the orbit radius between two positions *P* and *P′* can be approximated by the area of a triangle with vertices *P*, *P′* and *F* (the ellipse focus, where the star is). If the distance between *P* and *P′* is very small relative to the circumference of the ellipse, then the error introduced by this approximation of the area is negligible. Incidentally, the geometry implied in this approximation gives a nice illustration of the link between the Euclidean distance between two points and the Pythagorean theorem: the Euclidean distance is the length of the hypotenuse of a right triangle whose other two sides are given by the differences between the coordinates of the two points.
+It took surprisingly little time to work out the few tools required for this task. As I wanted to do most of the thinking myself, I avoided an exact formulation for the area of a radial section of an ellipse, and opted instead for a geometric approximation. Concretely, the area of the radial section of the ellipse that is swept by the orbit radius between two positions *P* and *P′* can be approximated by the area of a triangle with vertices *P*, *P′* and *F* (the ellipse focus, where the star is). If the distance between *P* and *P′* is very small relative to the circumference of the ellipse, then the error introduced by this approximation is negligible. Incidentally, the geometry implied in this approximation gives a nice illustration of the link between the Euclidean distance and the Pythagorean theorem: the Euclidean distance between two points is the length of the hypotenuse of a right triangle whose other two sides are given by the differences between the coordinates of the two points.
 
 Apart from the area formulation described above, the only piece of knowledge required is the formula that describes the *y*-coordinates of the points along an ellipse as a function of their *x*-coordinates. This derives from the mathematical definition of an ellipse as the set of all points (*x*, *y*) such that the sum of the distances between each of the foci (*F* and *F′*) and the point is equal to twice the semi-major axis of the ellipse (usually denoted by *a*).
 
@@ -30,7 +30,7 @@ The figure below presents the concepts involved in the definition of an ellipse 
 
 ![]({{ site.baseurl }}/images/kepler-orbits_files/figure-markdown_github/ellipse.jpg)
 
-I show how to implement this in the R language, although relying as little as possible on R-specific functions. For instance, although R already has a function for the Euclidean distance, we will start by implementing this ourselves, together with a function for calculating the area of the triangle defined by two ellipse position and its focus (*F*).
+I will show how to implement this in the R language, while relying as little as possible on R-specific functionalities. For instance, although R already has a function for the Euclidean distance, we will start by implementing this ourselves, together with a function for calculating the area of the triangle defined by two ellipse points (*P*, *Q*) and the ellipse focus (*F*).
 
 ``` r
 # Euclidean distance between two points
@@ -46,7 +46,7 @@ triangle.area = function(P, Q, F1) {
 }
 ```
 
-Now, we define a set of orbits. For this it is useful to have a function that calculates the *y*-value (ordinate) corresponding to a given *x*-value (abscissa) on the circumference of the ellipse; thereby we can obtain the coordinates of points in the ellipse for a range of values along *x*. We use the formula relating *y* and *x* for the ellipse, shown in the figure above. The formula needs to be modified, however, to account for the fact that the ellipses will have different centres — instead of being all centred at (0, 0). In addition, we need to specify whether we want the *y* coordinate for the point in the upper half of the ellipse, or the one in the lower half (note the ± sign in the formula above). Therefore, we add the argument `Cx` and `sign` to indicate the *x*-value of the ellipse centre and the side of the ellipse we are interested in, respectively.
+Now, we define a set of orbits. For this, it is useful to have a function that calculates the *y*-value (ordinate) corresponding to a given *x*-value (abscissa) on the circumference of the ellipse; thereby we can obtain the coordinates of points in the ellipse for a range of values along *x*. We use the formula relating *y* and *x* for the ellipse, shown in the figure above. The formula needs to be modified, however, to account for the fact that the ellipses will have different centres — instead of being all centred at (0, 0). In addition, we need to specify whether we want the *y* coordinate for the point in the upper half of the ellipse, or the one in the lower half (note the ± sign in the formula above). Therefore, we add the argument `Cx` and `sign` to indicate the *x*-value of the ellipse centre and the side of the ellipse we are interested in, respectively.
 
 ``` r
 # Obtain Y value for given X value in an ellipse with
@@ -66,7 +66,7 @@ R = 3 / 4                               # Orbit axis ratio
 F1 = c(-K / 2, 0)                       # Orbit focus
 a = sapply(1:N, function(n) K * n)      # Semi-major axis per orbit
 b = sapply(1:N, function(n) R * K * n)  # Semi-minor axis per orbit
-Cx = (a - K) / 2                        # Centre ordinate per orbit
+Cx = (a - K) / 2                        # Centre abscissa per orbit
 
 # Fixed positions along each orbit
 orbit.pos = lapply(1:N, function(i) {
@@ -102,11 +102,13 @@ plot.orbits(orbit.pos, F1, t=0,
             colours=c("orchid1", "turquoise1", "gold", "lawngreen", "red"))
 ```
 
+<div style="text-align: center;">
 ![]({{ site.baseurl }}/images/kepler-orbits_files/figure-markdown_github/unnamed-chunk-4-1.png)
+</div>
 
 Notice that the white dot, representing the Sun, lies halfway along the negative (left) semi-major axis for each of the ellipses. With this, we have implemented Kepler's first law: 'The orbit of a planet is an ellipse with the Sun at one of the two foci'.
 
-Let's now look at the second law of 'equal areas in equal times'. If we define a fixed area *A_t* that each planet must sweep in one time unit, we could apply some non-trivial trigonometry to find the next point along the orbit which results in a triangle with area *A_t*, and move the planet directly to that point. Instead, I will take an iterative approach, whereby the planet moves forward along its orbit in small steps until it has swept the desired area, and then stops. The step size is obviously critical: if steps are too short, the simulation will be inefficient, whereas if they are too long, the swept area will tend to be excessive. In addition, we need to carry the 'sign' of the planet's movement; that is, whether the planet is moving along the lower half or the upper half of the orbit (as the direction of the movement is the opposite in each half). This 'sign' is stored in the same vector that contains the coordinates of the orbit point, *P*.
+Let's now look at the second law of 'equal areas in equal times'. If we define a fixed area *A<sub>t</sub>* that each planet must sweep in one time unit, we could apply some non-trivial trigonometry to find the next point along the orbit which results in a triangle with area *A<sub>t</sub>*, and move the planet directly to that point. Instead, I will take an iterative approach, whereby the planet moves forward along its orbit in small steps until it has swept the desired area, and then stops. The step size is obviously critical: if steps are too short, the simulation will be inefficient, whereas if they are too long, the swept area will tend to be excessive. In addition, we need to carry the 'sign' of the planet's movement; that is, whether the planet is moving along the lower half or the upper half of the orbit (as the direction of the movement is the opposite in each half). This 'sign' is stored in the same vector that contains the coordinates of the orbit point, *P*.
 
 ``` r
 # Move from current orbit position to the closest position
@@ -133,7 +135,7 @@ next.orbit.pos = function(P, a, b, Cx, delta, F1, At) {
 }
 ```
 
-With this, we have implemented Kepler's second law. I have intentionally shunned the third law (which relates the orbital period with the orbit's semi-major axis) for two reasons. First, adjusting the periods of the planets according to this law would require knowing what the periods, which is not straightforward in this simulation. Because the motion here arises directly from the second law, and not from equations describing the speed and acceleration of the planets, we cannot predict their periods, but only discover them as the simulation progresses. (In fact, we *could* predict the periods by dividing the ellipse into triangles of area *A_t* and counting the number of triangles, but this would mean running the simulation *before* running the simulation.)
+With this, we have implemented Kepler's second law. I have intentionally shunned the third law (which relates the orbital period with the orbit's semi-major axis) for two reasons. First, adjusting the periods of the planets according to this law would require knowing what the periods, which is not straightforward in this simulation. Because the motion here arises directly from the second law, and not from equations describing the speed and acceleration of the planets, we cannot predict their periods, but only discover them as the simulation progresses. (In fact, we *could* predict the periods by dividing the ellipse into triangles of area *A<sub>t</sub>* and counting the number of triangles, but this would be like running the simulation *before* running the simulation.)
 
 Second, the third law states that the square of the orbital period is proportional to the cube of the semi-major axis; in other words, planets with larger orbits take much longer to complete them (for instance, Saturn has an orbital period of 29.5 years). However, if we think in terms of the second law, a larger orbit also implies that the movement needed to sweep a fixed area is much smaller (as the radius is longer), so by imposing the second law across all orbits, we are already slowing down the motion of the planets with larger orbits. So it's not clear to me whether Kepler's third law is a consequence of the second, or would need to be enforced independently — although I presume the latter.
 

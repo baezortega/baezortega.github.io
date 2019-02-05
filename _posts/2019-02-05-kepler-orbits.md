@@ -102,13 +102,13 @@ plot.orbits(orbit.pos, F1, t=0,
             colours=c("orchid1", "turquoise1", "gold", "lawngreen", "red"))
 ```
 
-<div style="text-align: center;">
+<center>
 ![]({{ site.baseurl }}/images/kepler-orbits_files/figure-markdown_github/unnamed-chunk-4-1.png)
-</div>
+</center>
 
 Notice that the white dot, representing the Sun, lies halfway along the negative (left) semi-major axis for each of the ellipses. With this, we have implemented Kepler's first law: 'The orbit of a planet is an ellipse with the Sun at one of the two foci'.
 
-Let's now look at the second law of 'equal areas in equal times'. If we define a fixed area *A<sub>t</sub>* that each planet must sweep in one time unit, we could apply some non-trivial trigonometry to find the next point along the orbit which results in a triangle with area *A<sub>t</sub>*, and move the planet directly to that point. Instead, I will take an iterative approach, whereby the planet moves forward along its orbit in small steps until it has swept the desired area, and then stops. The step size is obviously critical: if steps are too short, the simulation will be inefficient, whereas if they are too long, the swept area will tend to be excessive. In addition, we need to carry the 'sign' of the planet's movement; that is, whether the planet is moving along the lower half or the upper half of the orbit (as the direction of the movement is the opposite in each half). This 'sign' is stored in the same vector that contains the coordinates of the orbit point, *P*.
+Let's now look at the second law of 'equal areas in equal times'. If we define a fixed area *A<sub>t</sub>* that each planet must sweep in one time unit, we could apply some non-trivial trigonometry to find the next point along the orbit which results in a triangle with area *A<sub>t</sub>*, and move the planet directly to that point. Instead, I will take an iterative approach, whereby the planet moves forward along its orbit in small steps until it has swept the desired area, and then stops. The step size is obviously critical: if steps are too short, the simulation will be inefficient, whereas if they are too long, the swept area will tend to be excessive. In addition, we need to carry the 'sign' of the planet's movement; that is, whether the planet is moving along the lower half or the upper half of the orbit (as the direction of the movement is the opposite in each half). This 'sign' is stored in the same vector that contains the coordinates of the current orbital position, *P*.
 
 ``` r
 # Move from current orbit position to the closest position

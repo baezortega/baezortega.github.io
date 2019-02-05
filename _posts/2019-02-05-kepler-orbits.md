@@ -103,7 +103,7 @@ plot.orbits(orbit.pos, F1, t=0,
 ```
 
 <span style="display:block;text-align:center">
-</br>
+<br/>
 ![]({{ site.baseurl }}/images/kepler-orbits_files/figure-markdown_github/unnamed-chunk-4-1.png)
 </span>
 
@@ -172,6 +172,6 @@ dev.off()
 The resulting animation shows a quite convincing reproduction of the planetary motions, and the way they change as the move towards and away from the Sun (notice how the planets are 'slingshot' when they come close to the star). Although a mathematical description of the underlying forces would have to wait for Newton, Tycho recorded the motions of the planets so superbly, and Kepler condensed their properties so perfectly in his three laws, that today we are able to reproduce them without any resort to the theory of gravitation. As I thought when I was reading Feynman's text, it's almost unbelievable how much information is contained in the words 'equal areas in equal times'.
 
 <span style="display:block;text-align:center">
-</br>
+<br/>
 ![]({{ site.baseurl }}/images/kepler-orbits_files/figure-markdown_github/kepler.gif)
 </span>

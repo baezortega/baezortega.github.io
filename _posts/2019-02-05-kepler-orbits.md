@@ -8,7 +8,7 @@ date: 2019/02/05
 
 A few days ago I was reading one of the famous [*Feynman Lectures on Physics*](https://en.wikipedia.org/wiki/The_Feynman_Lectures_on_Physics), which included a discussion of [Kepler's laws of planetary motion](https://en.wikipedia.org/wiki/Kepler%27s_laws_of_planetary_motion); this is a set of three simple-looking laws proposed by the German astronomer and mathematician [Johannes Kepler](https://en.wikipedia.org/wiki/Johannes_Kepler) (1571–1630) to describe the motion of the planets around the Sun.
 
-Kepler, who would eventually become the imperial mathematician to three Holy Roman Emperors, had worked as an assistant to the celebrated Danish astronomer [Tycho Brahe](https://en.wikipedia.org/wiki/Tycho_Brahe) (1546–1601). Tycho was a visionary astronomer who had revolutionised the field through his new approach to science; he defended that scientific truth could be reached only by extremely precise measurement, rather than by logical arguments. In pursue of this view, he established an impressive astronomical observatory in the then-Danish island of Hven; this was probably the first proper research institute in the world. (Another interesting fact: Tycho lost his nose in a sword duel with another nobleman in 1566, after a quarrel over who was the best mathematician(!), and for the rest of his life wore an prosthetic nose made of brass.)
+Kepler, who would eventually become the imperial mathematician to three Holy Roman Emperors, had worked as an assistant to the celebrated Danish astronomer [Tycho Brahe](https://en.wikipedia.org/wiki/Tycho_Brahe) (1546–1601). Tycho was a visionary astronomer who had revolutionised the field through his new approach to science; he defended that scientific truth could be reached only by extremely precise measurement, rather than by logical argumentation. In pursue of this view, he established an impressive astronomical observatory in the then-Danish island of Hven; this was probably the first proper research institute in the world. (Another interesting fact: Tycho lost his nose in a sword duel with another nobleman in 1566, after a quarrel over who was the best mathematician(!), and for the rest of his life wore an prosthetic nose made of brass.)
 
 Kepler made use of the extensive and incredibly accurate astronomical tables that Tycho had compiled through decades of work, and arrived at a set of laws describing the motions of the planets around the Sun (although he didn't publish them in the form of three laws, as they are known today). Subsequently, [Isaac Newton](https://en.wikipedia.org/wiki/Isaac_Newton) (1643–1727) would build on Kepler's laws to arrive at his own law of universal gravitation. In a beautiful cross-generational chain of knowledge, Newton's law came to explain the forces responsible for the movements of the planets as they had been observed by Tycho a century before, and then described by Kepler's laws.
 
@@ -102,7 +102,7 @@ plot.orbits(orbit.pos, F1, t=0,
             colours=c("orchid1", "turquoise1", "gold", "lawngreen", "red"))
 ```
 
-<span style="display:block;text-align:center;margin-top:35px;">
+<span style="display:block;text-align:center;">
 ![]({{ site.baseurl }}/images/kepler-orbits_files/figure-markdown_github/unnamed-chunk-4-1.png)
 </span>
 
@@ -170,6 +170,6 @@ dev.off()
 
 The resulting animation is a quite convincing reproduction of the planetary motions; notice how the planets are 'slingshot' away when they come close to the star. Although a mathematical description of the underlying forces would have to wait for Newton, Tycho recorded the motions of the planets so excellently, and Kepler condensed their properties so perfectly in his three laws, that today we are able to reproduce them without any resort to the theory of gravitation. As I thought when I was reading Feynman's text, it's almost unbelievable how much information there is in the words 'equal areas in equal times'.
 
-<span style="display:block;text-align:center;margin-top:35px;">
+<span style="display:block;text-align:center;">
 ![]({{ site.baseurl }}/images/kepler-orbits_files/figure-markdown_github/kepler.gif)
 </span>
